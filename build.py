@@ -25,14 +25,15 @@ html_content = """<!DOCTYPE html>
         </div>
         <h1 class="text-2xl font-bold text-velours mb-1" style="font-family: 'Playfair Display'">Bienvenue à La Salamandre</h1>
         <p class="text-gray-600 text-lg italic">"Bonjour, je suis Stéphane."</p>
-        <p class="text-xs font-bold mt-2 uppercase tracking-wide text-velours">Un p'tit clic et je m'occupe du reste</p>
+        <p class="text-sm text-gray-500 mt-4 px-4 leading-relaxed">Pour recevoir nos offres flash et événements durant votre séjour, envoyez <span class="font-bold text-velours">"START"</span> par WhatsApp en cliquant sur le bouton vert en bas.</p>
     </header>
 
     <main class="px-4 py-6 max-w-md mx-auto space-y-6">
         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-            <h3 class="font-bold text-lg mb-2"><i class="fas fa-wifi text-velours mr-2"></i>Wi-Fi</h3>
+            <h3 class="font-bold text-lg mb-2"><i class="fas fa-wifi text-velours mr-2"></i>Wi-Fi Gratuit</h3>
+            <p class="text-xs text-gray-600 mb-2">Réseau : <strong>La Salamandre</strong></p>
             <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg border border-gray-200">
-                <p class="font-mono text-velours font-bold" id="wifi-code">lasalamandre15052015</p>
+                <p class="font-mono text-velours font-bold text-lg" id="wifi-code">lasalamandre15052015</p>
                 <button onclick="copyWifi()" class="text-sm bg-gray-200 px-3 py-1 rounded hover:bg-gray-300 transition">Copier</button>
             </div>
             <p id="copy-msg" class="text-center text-green-600 text-xs mt-2 hidden">Copié !</p>
@@ -52,8 +53,19 @@ html_content = """<!DOCTYPE html>
             </div>
         </div>
 
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 border-l-4 border-velours">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-lg text-velours"><i class="fas fa-wine-glass-alt mr-2"></i>Bar & Terrasse</h3>
+                <span class="text-xs bg-gray-100 text-gray-500 px-2 py-1 rounded">Avril - Octobre</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-4">Venez vous rafraîchir et profiter de nos <strong>planches dégustation</strong> (charcuterie & fromages).</p>
+            <div class="w-full h-40 bg-gray-200 rounded-lg overflow-hidden">
+                <img src="terrasse.jpg" alt="Ambiance Terrasse" class="w-full h-full object-cover">
+            </div>
+        </div>
+
         <h2 class="text-xl font-bold text-velours" style="font-family: 'Playfair Display'">Mes Adresses</h2>
-        
+
         <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-velours">
             <h3 class="font-bold text-lg">La Bohemia</h3>
             <p class="text-gray-600 italic text-sm mt-1">"Je vous le recommande pour sa belle ambiance sympathique."</p>
@@ -80,28 +92,145 @@ html_content = """<!DOCTYPE html>
                 <a href="https://www.google.com/maps/search/?api=1&query=Restaurant+L'Autrement+Beauvais" target="_blank" class="flex-1 py-2 text-center text-sm bg-velours text-white rounded hover:opacity-90">Y aller</a>
             </div>
         </div>
-        
-        <h2 class="text-xl font-bold text-velours" style="font-family: 'Playfair Display'">Mobilité</h2>
-        <a href="https://www.corolis.fr" target="_blank" class="block bg-white p-4 rounded-xl shadow-sm flex justify-between items-center">
-            <div class="flex items-center"><span class="bg-yellow-400 text-white font-bold w-8 h-8 flex items-center justify-center rounded-full mr-3">6</span><div><h3 class="font-bold text-sm">Bus Ligne 6</h3><p class="text-xs text-gray-500">Aéroport / Centre</p></div></div><i class="fas fa-chevron-right text-gray-300"></i>
-        </a>
-        <a href="https://www.sncf-connect.com/gare/beauvais" target="_blank" class="block bg-white p-4 rounded-xl shadow-sm flex justify-between items-center">
-            <div class="flex items-center"><i class="fas fa-train w-8 text-center mr-3 text-gray-400 text-xl"></i><div><h3 class="font-bold text-sm">Gare SNCF</h3><p class="text-xs text-gray-500">Trains vers Paris</p></div></div><i class="fas fa-chevron-right text-gray-300"></i>
-        </a>
-        <a href="tel:0344454400" class="block bg-white p-4 rounded-xl shadow-sm flex justify-between items-center border-l-4 border-yellow-400">
-            <div class="flex items-center"><i class="fas fa-taxi w-8 text-center mr-3 text-gray-400 text-xl"></i><div><h3 class="font-bold text-sm">Taxi Beauvais</h3><p class="text-xs text-gray-500">Appel direct</p></div></div><i class="fas fa-phone text-velours"></i>
+
+        <!-- SECTION CULTURE & VISITES -->
+        <h2 class="text-xl font-bold text-velours" style="font-family: 'Playfair Display'">Culture & Visites</h2>
+
+        <a href="https://www.visitbeauvais.fr" target="_blank" class="block bg-velours text-white p-4 rounded-xl shadow-md text-center hover:opacity-90 transition">
+            <i class="fas fa-info-circle mr-2"></i>
+            <span class="font-bold">Office de Tourisme de Beauvais</span>
+            <p class="text-xs mt-1 opacity-80">Découvrez toutes les activités et événements</p>
         </a>
 
-        <div class="text-center text-gray-400 text-xs mt-8 pb-8">
-            <p>La Salamandre • 10 rue Marcelle Geudelin, Beauvais</p>
+        <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-velours">
+            <a href="https://culture.beauvais.fr" target="_blank" class="block">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-velours mr-3 flex-shrink-0">
+                        <i class="fas fa-church"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg">Cathédrale St-Pierre</h3>
+                        <p class="text-gray-600 text-sm mt-1">Le chœur le plus haut du monde et son Horloge Astronomique.</p>
+                        <div class="mt-2 bg-gray-50 p-2 rounded text-xs text-gray-600">
+                            <i class="fas fa-clock text-velours mr-1"></i>
+                            <span class="font-bold">Hiver :</span> 10h-12h15 / 14h-17h15<br>
+                            <i class="fas fa-sun text-yellow-500 mr-1 ml-4"></i>
+                            <span class="font-bold">Été :</span> 10h-18h15
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300 ml-2"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-velours">
+            <a href="https://mudo.oise.fr" target="_blank" class="block">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-velours mr-3 flex-shrink-0">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center">
+                            <h3 class="font-bold text-lg">Le MUDO</h3>
+                            <span class="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Gratuit</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mt-1">Musée de l'Oise, situé dans le Palais Épiscopal.</p>
+                        <div class="mt-2 bg-gray-50 p-2 rounded text-xs text-gray-600">
+                            <i class="fas fa-clock text-velours mr-1"></i>
+                            10h-13h / 14h-18h
+                            <span class="ml-2 text-red-500 font-bold">(Fermé le Mardi)</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300 ml-2"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-velours">
+            <a href="https://culture.beauvais.fr/le-quadrilatere" target="_blank" class="block">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-velours mr-3 flex-shrink-0">
+                        <i class="fas fa-shapes"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg">Le Quadrilatère</h3>
+                        <p class="text-gray-600 text-sm mt-1">Centre d'art et d'architecture, expositions temporaires.</p>
+                        <div class="mt-2 bg-gray-50 p-2 rounded text-xs text-gray-600">
+                            <i class="fas fa-clock text-velours mr-1"></i>
+                            Mar-Ven : 12h-18h | Sam-Dim : 10h-18h
+                            <span class="block mt-1 text-red-500 font-bold">(Fermé le Lundi)</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300 ml-2"></i>
+                </div>
+            </a>
+        </div>
+
+        <h2 class="text-xl font-bold text-velours" style="font-family: 'Playfair Display'">Se Déplacer</h2>
+
+        <div class="space-y-3">
+            <a href="https://www.corolis.fr/wp-content/uploads/2024/03/Fiche-Horaire-Web_6_valable-a-partir-du-5-janvier-2026.pdf" target="_blank" class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">
+                <div class="flex items-center">
+                    <span class="bg-yellow-500 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mr-3">6</span>
+                    <div>
+                        <div class="text-sm font-bold">Bus Ligne 6</div>
+                        <span class="block text-xs text-gray-500 font-normal">Arrêt : <strong>MAILLART</strong> (avec un T)</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right text-gray-300"></i>
+            </a>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-yellow-400">
+                <div class="flex items-center mb-2">
+                    <i class="fas fa-taxi text-gray-400 w-8 text-center mr-3 text-lg"></i>
+                    <div class="text-sm font-bold">Taxis Partenaires</div>
+                </div>
+                <div class="pl-11 space-y-2">
+                    <a href="tel:+33624491048" class="block text-xs text-gray-600 hover:text-velours border-b border-gray-100 pb-1">
+                        <span class="font-bold">Jean Pierre</span> : 06 24 49 10 48
+                    </a>
+                    <a href="tel:+33785979968" class="block text-xs text-gray-600 hover:text-velours border-b border-gray-100 pb-1">
+                        <span class="font-bold">Taxi Mounir</span> : 07 85 97 99 68
+                    </a>
+                    <a href="tel:+33767356468" class="block text-xs text-gray-600 hover:text-velours">
+                        <span class="font-bold">Taxi Asin</span> : 07 67 35 64 68
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mt-2">
+                <a href="https://www.sncf-connect.com/train/trajet/beauvais/paris" target="_blank" class="flex flex-col items-center justify-center bg-white p-3 rounded-xl shadow-sm hover:shadow-md transition">
+                    <i class="fas fa-train text-velours mb-1"></i>
+                    <span class="text-xs font-bold">Train Paris</span>
+                    <span class="text-[10px] text-gray-400">Gare du Nord</span>
+                </a>
+                <a href="https://www.aeroportparisbeauvais.com/acces-et-parking/navette-aerobus-paris-aeroport" target="_blank" class="flex flex-col items-center justify-center bg-white p-3 rounded-xl shadow-sm hover:shadow-md transition">
+                    <i class="fas fa-bus text-velours mb-1"></i>
+                    <span class="text-xs font-bold">Navette Aéro</span>
+                    <span class="text-[10px] text-gray-400">Porte Maillot</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="text-center text-gray-400 text-sm mt-8 mb-6">
+            <p class="font-bold text-gray-600">La Salamandre</p>
+            <p>10 rue Marcelle Geudelin, Beauvais</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=10+rue+Marcelle+Geudelin+Beauvais" target="_blank" class="text-velours underline text-xs">Ouvrir le plan</a>
         </div>
     </main>
 
-    <div class="fixed bottom-0 w-full bg-white border-t p-4 shadow-lg flex justify-between z-40">
-        <div class="flex flex-col"><span class="text-xs text-gray-500">Envie de revenir ?</span><a href="https://lasalamandre-beauvais.fr" class="text-velours font-bold text-sm">Réserver</a></div>
-        <a href="https://lasalamandre-beauvais.fr" class="bg-velours text-white px-6 py-2 rounded-full font-bold shadow-lg text-sm">Réserver</a>
+    <div class="fixed bottom-0 w-full bg-white border-t border-gray-200 p-4 shadow-[0_-5px_15px_rgba(0,0,0,0.1)] flex items-center justify-between z-40">
+        <div class="flex flex-col">
+            <span class="text-xs text-gray-500">Séduit(e) ?</span>
+            <span class="text-velours font-bold text-sm">Prochain séjour</span>
+        </div>
+        <a href="https://lasalamandre-beauvais.fr" class="bg-velours text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-red-900 transition text-sm flex items-center">
+            Réserver <i class="fas fa-arrow-right ml-2"></i>
+        </a>
     </div>
-    <a href="https://wa.me/33600000000" class="fixed bottom-24 right-4 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl z-50 animate-bounce"><i class="fab fa-whatsapp text-3xl"></i></a>
+    <a href="https://wa.me/33614875953" target="_blank" class="fixed bottom-24 right-4 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition z-50">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
 
     <script>
         function copyWifi() {
@@ -115,28 +244,28 @@ html_content = """<!DOCTYPE html>
 """
 
 # --- 2. GENERATION DU FICHIER HTML ---
-print("🏗️  Création du fichier index.html...")
+print("[BUILD] Creation du fichier index.html...")
 with open("index.html", "w", encoding="utf-8") as f:
     f.write(html_content)
-print("✅ index.html créé avec succès.")
+print("[OK] index.html cree avec succes.")
 
 # --- 3. INSTALLATION AUTOMATIQUE DU MODULE QRCODE ---
-print("🔧 Vérification de l'outil QR Code...")
+print("[CHECK] Verification de l'outil QR Code...")
 try:
     import qrcode
 except ImportError:
-    print("📥 Installation de la librairie 'qrcode' en cours...")
+    print("[INSTALL] Installation de la librairie 'qrcode' en cours...")
     subprocess.check_call([sys.executable, "-m", "pip", "install", "qrcode[pil]"])
     import qrcode
 
 # --- 4. GENERATION DU QR CODE ---
-print("📷 Génération du QR Code...")
-url_livret = "https://lasalamandre-beauvais.fr/livret-accueil" # À changer quand le site sera en ligne
+print("[QR] Generation du QR Code...")
+url_livret = "https://lasalamandre-beauvais.fr/livret-accueil" # A changer quand le site sera en ligne
 qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=4)
 qr.add_data(url_livret)
 qr.make(fit=True)
 img = qr.make_image(fill_color="black", back_color="white")
 img.save("qrcode_salamandre.png")
-print("✅ qrcode_salamandre.png généré.")
+print("[OK] qrcode_salamandre.png genere.")
 
-print("\n🚀 TOUT EST PRÊT ! Ouvrez index.html pour voir le résultat.")
+print("\n[DONE] TOUT EST PRET ! Ouvrez index.html pour voir le resultat.")
