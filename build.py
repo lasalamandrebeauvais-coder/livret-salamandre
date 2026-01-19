@@ -60,7 +60,7 @@ html_content = """<!DOCTYPE html>
             </div>
             <p class="text-gray-600 text-sm mb-4">Venez vous rafraîchir et profiter de nos <strong>planches dégustation</strong> (charcuterie & fromages).</p>
             <div class="w-full h-40 bg-gray-200 rounded-lg overflow-hidden">
-                <img src="terrasse.jpg" alt="Ambiance Terrasse" class="w-full h-full object-cover">
+                <img src="terrasse1.jpg" alt="Ambiance Terrasse" class="w-full h-full object-cover">
             </div>
         </div>
 
@@ -260,7 +260,7 @@ except ImportError:
 
 # --- 4. GENERATION DU QR CODE ---
 print("[QR] Generation du QR Code...")
-url_livret = "https://lasalamandre-beauvais.fr/livret-accueil" # A changer quand le site sera en ligne
+url_livret = "https://lasalamandrebeauvais-coder.github.io/livret-salamandre/"
 qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=4)
 qr.add_data(url_livret)
 qr.make(fit=True)
