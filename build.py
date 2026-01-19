@@ -19,7 +19,13 @@ html_content = """<!DOCTYPE html>
 </head>
 <body class="pb-24 text-anthracite">
     <header class="bg-white pt-8 pb-6 px-4 text-center shadow-sm relative">
-        <div class="absolute top-4 right-4 flex space-x-2 grayscale opacity-50"><span>🇫🇷</span><span>🇬🇧</span><span>🇪🇸</span><span>🇮🇹</span></div>
+        <div id="google_translate_element" class="absolute top-4 right-4 z-50"></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'fr', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
         <div class="mx-auto w-32 h-32 rounded-full overflow-hidden border-4 border-velours shadow-lg mb-4">
             <img src="stephane.jpg" alt="Stéphane" class="w-full h-full object-cover">
         </div>
