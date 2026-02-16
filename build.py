@@ -1,10 +1,47 @@
 
-import os
-import subprocess
-import sys
+# ... (Previous code)
+
+# --- CONFIGURATION DYNAMIQUE ---
+# Scandir pour la galerie VIP
+vip_photos_dir = "photos/vip"
+vip_gallery_html = ""
+
+if os.path.exists(vip_photos_dir):
+    vip_files = [f for f in os.listdir(vip_photos_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.webp'))]
+    if vip_files:
+        vip_gallery_html = '<div class="grid grid-cols-2 gap-4">'
+        for photo in vip_files:
+            photo_path = f"{vip_photos_dir}/{photo}"
+            name = os.path.splitext(photo)[0].replace('_', ' ').title()
+            vip_gallery_html += f"""
+                        <div class="bg-white/90 p-2 rounded-2xl shadow-sm break-inside-avoid">
+                            <div class="aspect-[3/4] bg-gray-200 rounded-xl overflow-hidden mb-2 relative">
+                                <img src="{photo_path}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-2">
+                                    <span class="text-white text-[10px] font-bold">{name}</span>
+                                </div>
+                            </div>
+                        </div>"""
+        vip_gallery_html += '</div>'
+    else:
+        # Placeholder si dossier vide
+        vip_gallery_html = """
+                    <div class="text-center py-8">
+                        <div class="inline-block p-4 rounded-full bg-gray-100 text-gray-400 mb-3">
+                            <i class="fas fa-camera text-2xl"></i>
+                        </div>
+                        <p class="text-sm text-gray-500">La galerie est vide pour l'instant.</p>
+                        <p class="text-xs text-gray-400 mt-1">Ajoutez vos photos dans le dossier <code>photos/vip</code></p>
+                    </div>
+        """
+else:
+     # Dossier n'existe pas encore
+     vip_gallery_html = """
+                    <p class="text-center text-xs text-gray-500 italic mb-4">La galerie est en cours de création...</p>
+     """
 
 # --- 1. CONFIGURATION DU SITE (CONTENU) ---
-html_content = """<!DOCTYPE html>
+html_content = f"""<!DOCTYPE html>
 <html lang="fr" class="h-full">
 <head>
     <meta charset="UTF-8">
@@ -13,27 +50,27 @@ html_content = """<!DOCTYPE html>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        tailwind.config = { theme: { extend: { colors: { velours: '#800020', anthracite: '#333333', sable: '#F8F9FA', gold: '#D4AF37' }, boxShadow: { 'soft': '0 10px 40px -10px rgba(0,0,0,0.08)' }, fontFamily: { 'playfair': ['"Playfair Display"', 'serif'], 'lato': ['"Lato"', 'sans-serif'] } } } }
+        tailwind.config = {{ theme: {{ extend: {{ colors: {{ velours: '#800020', anthracite: '#333333', sable: '#F8F9FA', gold: '#D4AF37' }}, boxShadow: {{ 'soft': '0 10px 40px -10px rgba(0,0,0,0.08)' }}, fontFamily: {{ 'playfair': ['"Playfair Display"', 'serif'], 'lato': ['"Lato"', 'sans-serif'] }} }} }} }}
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Lato', sans-serif; }
-        .animate-fade-in { animation: fadeIn 0.8s ease-out; }
-        .animate-slide-up { animation: slideUp 0.8s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        body {{ font-family: 'Lato', sans-serif; }}
+        .animate-fade-in {{ animation: fadeIn 0.8s ease-out; }}
+        .animate-slide-up {{ animation: slideUp 0.8s ease-out; }}
+        @keyframes fadeIn {{ from {{ opacity: 0; }} to {{ opacity: 1; }} }}
+        @keyframes slideUp {{ from {{ opacity: 0; transform: translateY(20px); }} to {{ opacity: 1; transform: translateY(0); }} }}
         
         /* Global Background */
-        .bg-terrasse {
+        .bg-terrasse {{
             background-image: url('art.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-        }
-        .bg-overlay {
+        }}
+        .bg-overlay {{
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(8px);
-        }
+        }}
     </style>
 </head>
 <body class="bg-terrasse min-h-screen text-anthracite antialiased">
@@ -41,7 +78,8 @@ html_content = """<!DOCTYPE html>
     <div class="fixed inset-0 bg-overlay z-0"></div>
 
     <!-- WELCOME SCREEN -->
-    <div id="welcome-screen" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center text-white bg-[url('telephone_rouge.jpg')] bg-cover bg-center">
+    <!-- Usage de style inline pour garantir l'affichage de l'image -->
+    <div id="welcome-screen" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center text-white" style="background-image: url('telephone_rouge.jpg'); background-size: cover; background-position: center;">
         <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
         
         <div class="relative z-10 text-center px-6 animate-slide-up">
