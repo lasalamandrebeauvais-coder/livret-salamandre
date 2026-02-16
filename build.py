@@ -25,7 +25,7 @@ html_content = """<!DOCTYPE html>
         
         /* Global Background */
         .bg-terrasse {
-            background-image: url('terrasse1.jpg');
+            background-image: url('art.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -41,7 +41,7 @@ html_content = """<!DOCTYPE html>
     <div class="fixed inset-0 bg-overlay z-0"></div>
 
     <!-- WELCOME SCREEN -->
-    <div id="welcome-screen" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center text-white bg-[url('terrasse1.jpg')] bg-cover bg-center">
+    <div id="welcome-screen" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center text-white bg-[url('telephone_rouge.jpg')] bg-cover bg-center">
         <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
         
         <div class="relative z-10 text-center px-6 animate-slide-up">
@@ -246,10 +246,10 @@ html_content = """<!DOCTYPE html>
                 
                 <!-- Header Image Salle de Bain -->
                 <div class="h-48 rounded-[2.5rem] shadow-soft overflow-hidden relative mt-8">
-                    <img src="salle_de_bain.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover" alt="Salle de Bain">
+                    <img src="senteur.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover" alt="Senteur & Bien-être">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 text-white">
-                         <h3 class="font-bold text-2xl font-playfair">Confort & Détente</h3>
+                         <h3 class="font-bold text-2xl font-playfair">Bien-être & Senteurs</h3>
                     </div>
                 </div>
 
@@ -523,6 +523,17 @@ html_content = """<!DOCTYPE html>
                 <h2 class="text-3xl font-bold text-anthracite mt-10 mb-6 font-playfair text-center">Se Déplacer</h2>
 
                 <div class="space-y-4">
+                    <div class="bg-white/95 backdrop-blur-sm p-8 rounded-[2.5rem] shadow-soft text-center flex flex-col items-center justify-center relative overflow-hidden mb-6">
+                        <!-- Image Voyage pour le départ -->
+                        <div class="absolute inset-0 z-0 opacity-20">
+                             <img src="voyage.jpg" class="w-full h-full object-cover" alt="Voyage">
+                        </div>
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-300 to-blue-100 z-10"></div>
+                        <div class="relative z-10">
+                            <h3 class="font-bold text-2xl text-anthracite font-playfair mb-2">Voyage & Départs</h3>
+                        </div>
+                    </div>
+
                     <a href="https://www.corolis.fr/wp-content/uploads/2024/03/Fiche-Horaire-Web_6_valable-a-partir-du-5-janvier-2026.pdf" target="_blank" class="flex justify-between items-center bg-white/95 backdrop-blur-sm p-6 rounded-[2.5rem] shadow-soft hover:shadow-lg transition group">
                         <div class="flex items-center">
                             <span class="bg-yellow-400 text-white font-bold text-xl w-14 h-14 rounded-2xl flex items-center justify-center mr-5 shadow-lg shadow-yellow-200 group-hover:scale-110 transition">6</span>
@@ -800,12 +811,12 @@ except ImportError:
 
 # --- 4. GENERATION DU QR CODE ---
 print("[QR] Generation du QR Code...")
-url_livret = "https://lasalamandrebeauvais-coder.github.io/livret-salamandre/"
-qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=4)
-qr.add_data(url_livret)
+url = "https://lasalamandre-beauvais.fr/livret"
+qr = qrcode.QRCode(version=1, box_size=10, border=5)
+qr.add_data(url)
 qr.make(fit=True)
 img = qr.make_image(fill_color="black", back_color="white")
 img.save("qrcode_salamandre.png")
 print("[OK] qrcode_salamandre.png genere.")
 
-print("\n[DONE] TOUT EST PRET ! Ouvrez index.html pour voir le resultat.")
+print("\\n[DONE] TOUT EST PRET ! Ouvrez index.html pour voir le resultat.")
