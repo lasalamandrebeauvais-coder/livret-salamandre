@@ -1,5 +1,7 @@
 
-# ... (Previous code)
+import os
+import subprocess
+import sys
 
 # --- CONFIGURATION DYNAMIQUE ---
 # Scandir pour la galerie VIP
@@ -41,7 +43,8 @@ else:
      """
 
 # --- 1. CONFIGURATION DU SITE (CONTENU) ---
-html_content = f"""<!DOCTYPE html>
+# PLACEHOLDER_FOR_HTML_CONTENT
+html_content = """<!DOCTYPE html>
 <html lang="fr" class="h-full">
 <head>
     <meta charset="UTF-8">
@@ -50,27 +53,27 @@ html_content = f"""<!DOCTYPE html>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        tailwind.config = {{ theme: {{ extend: {{ colors: {{ velours: '#800020', anthracite: '#333333', sable: '#F8F9FA', gold: '#D4AF37' }}, boxShadow: {{ 'soft': '0 10px 40px -10px rgba(0,0,0,0.08)' }}, fontFamily: {{ 'playfair': ['"Playfair Display"', 'serif'], 'lato': ['"Lato"', 'sans-serif'] }} }} }} }}
+        tailwind.config = { theme: { extend: { colors: { velours: '#800020', anthracite: '#333333', sable: '#F8F9FA', gold: '#D4AF37' }, boxShadow: { 'soft': '0 10px 40px -10px rgba(0,0,0,0.08)' }, fontFamily: { 'playfair': ['"Playfair Display"', 'serif'], 'lato': ['"Lato"', 'sans-serif'] } } } }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body {{ font-family: 'Lato', sans-serif; }}
-        .animate-fade-in {{ animation: fadeIn 0.8s ease-out; }}
-        .animate-slide-up {{ animation: slideUp 0.8s ease-out; }}
-        @keyframes fadeIn {{ from {{ opacity: 0; }} to {{ opacity: 1; }} }}
-        @keyframes slideUp {{ from {{ opacity: 0; transform: translateY(20px); }} to {{ opacity: 1; transform: translateY(0); }} }}
+        body { font-family: 'Lato', sans-serif; }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out; }
+        .animate-slide-up { animation: slideUp 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
         /* Global Background */
-        .bg-terrasse {{
+        .bg-terrasse {
             background-image: url('art.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-        }}
-        .bg-overlay {{
+        }
+        .bg-overlay {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(8px);
-        }}
+        }
     </style>
 </head>
 <body class="bg-terrasse min-h-screen text-anthracite antialiased">
@@ -191,6 +194,17 @@ html_content = f"""<!DOCTYPE html>
                     <div class="text-left">
                         <span class="font-bold text-anthracite text-sm font-playfair block">Jeux de Société</span>
                         <span class="text-[10px] text-gray-500 uppercase tracking-wide">Détente & Partage</span>
+                    </div>
+                </button>
+
+                <!-- 8. LIVRE D'OR (New) -->
+                <button onclick="showSection('section-livre-or')" class="col-span-2 bg-gradient-to-r from-yellow-50 to-orange-50 backdrop-blur-sm p-6 rounded-[2rem] shadow-soft flex items-center justify-center hover:scale-[1.02] hover:shadow-lg transition duration-300 group ring-1 ring-orange-100">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-yellow-500 mr-4 group-hover:bg-yellow-500 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <i class="fas fa-star text-2xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="font-bold text-anthracite text-sm font-playfair block">Livre d'Or & VIP</span>
+                        <span class="text-[10px] text-gray-500 uppercase tracking-wide">Vos mots & Nos stars</span>
                     </div>
                 </button>
                 
@@ -323,7 +337,6 @@ html_content = f"""<!DOCTYPE html>
                 </div>
             </div>
 
-
             <!-- SECTION BAR -->
             <div id="section-bar" class="hidden space-y-6 animate-fade-in relative pt-4">
                 <button onclick="showDashboard()" class="absolute -top-6 left-0 text-velours font-bold text-xs bg-white/90 px-4 py-2 rounded-full shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-gray-100"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
@@ -402,7 +415,6 @@ html_content = f"""<!DOCTYPE html>
                 </div>
             </div>
 
-
             <!-- SECTION ADRESSES -->
             <div id="section-adresses" class="hidden space-y-6 animate-fade-in relative pt-4">
                 <button onclick="showDashboard()" class="absolute -top-6 left-0 text-velours font-bold text-xs bg-white/90 px-4 py-2 rounded-full shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-gray-100"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
@@ -479,13 +491,65 @@ html_content = f"""<!DOCTYPE html>
                 </div>
             </div>
 
+            <!-- SECTION LIVRE D'OR -->
+            <div id="section-livre-or" class="hidden space-y-6 animate-fade-in relative pt-4">
+                <button onclick="showDashboard()" class="absolute -top-6 left-0 text-velours font-bold text-xs bg-white/90 px-4 py-2 rounded-full shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-gray-100"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
+                
+                <!-- ENTÊTE -->
+                <div class="bg-anthracite text-white p-8 rounded-[2.5rem] shadow-soft relative overflow-hidden mt-8 text-center">
+                     <div class="absolute inset-0 opacity-30 bg-[url('art.jpg')] bg-cover bg-center"></div>
+                     <div class="absolute inset-0 bg-gradient-to-b from-anthracite/50 to-anthracite"></div>
+                     <div class="relative z-10">
+                        <i class="fas fa-quote-right text-4xl text-yellow-500 mb-4 opacity-80"></i>
+                        <h2 class="text-2xl font-bold font-playfair">Ils parlent de nous</h2>
+                        <p class="text-xs text-gray-300 uppercase tracking-widest mt-2">Souvenirs & Célébrités</p>
+                     </div>
+                </div>
+
+                <!-- SELECTEUR D'ONGLETS -->
+                <div class="flex p-1 bg-gray-100 rounded-2xl">
+                    <button onclick="switchTab('tab-clients')" id="btn-tab-clients" class="flex-1 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition bg-white shadow-sm text-anthracite">Vos avis</button>
+                    <button onclick="switchTab('tab-vip')" id="btn-tab-vip" class="flex-1 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition text-gray-500 hover:text-anthracite">Célébrités</button>
+                </div>
+
+                <!-- CONTENU ONGLET CLIENTS -->
+                <div id="tab-clients" class="space-y-4 animate-fade-in">
+                    <div class="bg-white/95 backdrop-blur-sm p-6 rounded-[2rem] shadow-soft">
+                        <div class="flex text-yellow-500 mb-2 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="italic text-gray-600 text-sm leading-relaxed mb-4">"Un grand merci à Stéphane pour son accueil chaleureux. La maison est magnifique et on s'y sent tout de suite comme chez soi."</p>
+                        <p class="text-xs font-bold text-anthracite text-right">- Marie & Pierre, Juillet 2025</p>
+                    </div>
+
+                    <div class="bg-white/95 backdrop-blur-sm p-6 rounded-[2rem] shadow-soft">
+                        <div class="flex text-yellow-500 mb-2 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="italic text-gray-600 text-sm leading-relaxed mb-4">"Le bar en terrasse est une pépite. Calme, bon vin, et bonne compagnie. Nous reviendrons !"</p>
+                        <p class="text-xs font-bold text-anthracite text-right">- Thomas, Septembre 2025</p>
+                    </div>
+
+                    <button onclick="window.open('https://wa.me/33614875953?text=Bonjour%20Ste%CC%81phane,%20voici%20un%20petit%20mot%20pour%20ton%20livre%20d%27or%20:%20', '_blank')" class="w-full bg-anthracite text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-black transition shadow-lg flex items-center justify-center">
+                        <i class="fas fa-pen-nib mr-2"></i> Écrire un mot
+                    </button>
+                </div>
+
+                <!-- CONTENU ONGLET VIP -->
+                <div id="tab-vip" class="hidden space-y-4 animate-fade-in">
+                    <p class="text-center text-xs text-gray-500 italic mb-4">Quelques visages familiers croisés à la Salamandre...</p>
+                    
+                    {vip_gallery_html}
+                </div>
+            </div>
+html_content += """
             <!-- SECTION VISITES -->
             <div id="section-visites" class="hidden space-y-6 animate-fade-in relative pt-4">
                 <button onclick="showDashboard()" class="absolute -top-6 left-0 text-velours font-bold text-xs bg-white/90 px-4 py-2 rounded-full shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-gray-100"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
                 
                 <!-- Header Image Tableaux -->
                 <div class="h-32 rounded-[2.5rem] shadow-soft overflow-hidden relative mt-8 flex items-center justify-center">
-                    <img src="tableaux.jpg" onerror="this.style.display='none'" class="absolute inset-0 w-full h-full object-cover" alt="Art">
+                    <img src="art.jpg" onerror="this.style.display='none'" class="absolute inset-0 w-full h-full object-cover" alt="Art">
                     <div class="absolute inset-0 bg-black/30"></div>
                     <h2 class="text-3xl font-bold text-white relative z-10 font-playfair text-center">Découvrir Beauvais</h2>
                 </div>
@@ -661,7 +725,8 @@ html_content = f"""<!DOCTYPE html>
         <div class="bg-white rounded-[2.5rem] p-8 w-full max-w-sm shadow-2xl relative overflow-hidden">
             <!-- Header Image Placeholder (Red Phone) -->
             <div class="absolute top-0 left-0 w-full h-24 overflow-hidden">
-                 <img src="telephone_rouge.jpg" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(to right, #ef4444, #dc2626)'" class="w-full h-full object-cover opacity-80" alt="Urgences">
+                 <!-- Usage de style inline pour garantir l'affichage -->
+                 <div style="background-image: url('telephone_rouge.jpg'); background-size: cover; background-position: center; width: 100%; height: 100%; opacity: 0.8;"></div>
                  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white"></div>
             </div>
             
@@ -803,7 +868,7 @@ html_content = f"""<!DOCTYPE html>
             document.getElementById('dashboard').classList.remove('grid'); // enlever grid car dashboard a "grid"
             
             // Cacher toutes les sections
-            const sections = ['section-wifi', 'section-infos', 'section-bar', 'section-adresses', 'section-visites', 'section-transports', 'section-jeux'];
+            const sections = ['section-wifi', 'section-infos', 'section-bar', 'section-adresses', 'section-visites', 'section-transports', 'section-jeux', 'section-livre-or'];
             sections.forEach(id => document.getElementById(id).classList.add('hidden'));
             
             // Afficher la section demandée
@@ -816,7 +881,7 @@ html_content = f"""<!DOCTYPE html>
 
         function showDashboard() {
             // Cacher toutes les sections
-            const sections = ['section-wifi', 'section-infos', 'section-bar', 'section-adresses', 'section-visites', 'section-transports', 'section-jeux'];
+            const sections = ['section-wifi', 'section-infos', 'section-bar', 'section-adresses', 'section-visites', 'section-transports', 'section-jeux', 'section-livre-or'];
             sections.forEach(id => document.getElementById(id).classList.add('hidden'));
             
             // Afficher le dashboard
@@ -827,10 +892,42 @@ html_content = f"""<!DOCTYPE html>
             // Scroll en haut
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
+        
+        function switchTab(tabId) {
+            // Cacher tous les onglets
+            document.getElementById('tab-clients').classList.add('hidden');
+            document.getElementById('tab-vip').classList.add('hidden');
+            
+            // Reset styles boutons
+            const btnClients = document.getElementById('btn-tab-clients');
+            const btnVip = document.getElementById('btn-tab-vip');
+            
+            btnClients.classList.remove('bg-white', 'shadow-sm', 'text-anthracite');
+            btnClients.classList.add('text-gray-500');
+            
+            btnVip.classList.remove('bg-white', 'shadow-sm', 'text-anthracite');
+            btnVip.classList.add('text-gray-500');
+            
+            // Afficher l'onglet actif
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // Style actif
+            if(tabId === 'tab-clients') {
+                btnClients.classList.add('bg-white', 'shadow-sm', 'text-anthracite');
+                btnClients.classList.remove('text-gray-500');
+            } else {
+                btnVip.classList.add('bg-white', 'shadow-sm', 'text-anthracite');
+                btnVip.classList.remove('text-gray-500');
+            }
+        }
     </script>
 </body>
 </html>
 """
+
+
+# Injection dynamique
+html_content = html_content.replace("{vip_gallery_html}", vip_gallery_html)
 
 # --- 2. GENERATION DU FICHIER HTML ---
 print("[BUILD] Creation du fichier index.html...")
@@ -849,7 +946,8 @@ except ImportError:
 
 # --- 4. GENERATION DU QR CODE ---
 print("[QR] Generation du QR Code...")
-url = "https://lasalamandre-beauvais.fr/livret"
+# IMPORTANT : Le lien cible du QR Code
+url = "https://lasalamandre-beauvais.fr/livret" 
 qr = qrcode.QRCode(version=1, box_size=10, border=5)
 qr.add_data(url)
 qr.make(fit=True)
