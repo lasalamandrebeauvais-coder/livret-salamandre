@@ -139,7 +139,11 @@
             <div id="section-wifi" class="hidden space-y-6 animate-fade-in relative pt-4">
                 <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
                 
-                <div class="bg-white p-8 rounded-sm shadow-sm border border-charbon/10 mt-8">
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-or/20 to-creme">
+                    <i class="fas fa-wifi text-6xl text-or opacity-20"></i>
+                </div>
+                
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-charbon/10">
                     <h3 class="font-bold text-2xl mb-6 flex items-center">
                         <i class="fas fa-wifi text-or mr-3"></i> Wi-Fi
                     </h3>
@@ -267,7 +271,12 @@
             <div id="section-adresses" class="hidden space-y-6 animate-fade-in relative pt-4">
                 <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
                 
-                <h2 class="text-3xl font-bold text-charbon mt-10 mb-6 text-center">Mes coups de ❤️</h2>
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-orange-50 to-creme">
+                    <img src="art.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover opacity-30">
+                    <i class="fas fa-utensils absolute text-6xl text-charbon/20"></i>
+                </div>
+                
+                <h2 class="text-3xl font-bold text-charbon mb-6 text-center">Mes coups de ❤️</h2>
 
                 <div class="bg-white p-8 rounded-sm shadow-sm hover:shadow-md transition border border-charbon/10">
                     <div class="flex items-start justify-between mb-4">
@@ -442,7 +451,11 @@
             <div id="section-jeux" class="hidden space-y-6 animate-fade-in relative pt-4">
                 <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
                 
-                <div class="bg-white p-8 rounded-sm shadow-sm border border-charbon/10 mt-8">
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-indigo-50 to-creme">
+                    <i class="fas fa-dice text-6xl text-charbon/20"></i>
+                </div>
+                
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-charbon/10">
                     <h2 class="text-2xl font-bold text-charbon mb-8 text-center">Jeux & Détente</h2>
 
                     <div class="space-y-6">
@@ -482,7 +495,11 @@
             <div id="section-livre-or" class="hidden space-y-6 animate-fade-in relative pt-4">
                 <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
                 
-                <div class="bg-charbon text-white p-8 rounded-sm shadow mt-8 text-center">
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-charbon to-charbon/80">
+                    <i class="fas fa-star text-6xl text-or opacity-40"></i>
+                </div>
+                
+                <div class="bg-charbon text-white p-8 rounded-sm shadow text-center">
                     <i class="fas fa-quote-right text-4xl text-or mb-4"></i>
                     <h2 class="text-2xl font-bold">Ils parlent de nous</h2>
                     <p class="text-xs text-white/60 uppercase tracking-widest mt-2">Souvenirs & Célébrités</p>
@@ -517,12 +534,8 @@
 
                 <div id="tab-vip" class="hidden space-y-4 animate-fade-in">
                     <p class="text-center text-xs text-charbon/50 italic mb-4">Quelques visages familiers croisés à la Salamandre...</p>
-                    <div class="text-center py-8">
-                        <div class="inline-block p-4 rounded-sm bg-creme text-charbon/30 mb-3">
-                            <i class="fas fa-camera text-2xl"></i>
-                        </div>
-                        <p class="text-sm text-charbon/50">La galerie est vide pour l'instant.</p>
-                        <p class="text-xs text-charbon/30 mt-1">Ajoutez vos photos dans <code>photos/vip</code></p>
+                    <div id="vip-gallery" class="grid grid-cols-2 gap-4">
+                        <!-- Chargé dynamiquement en JS -->
                     </div>
                 </div>
             </div>
@@ -659,6 +672,64 @@
         function setLanguage(lang) {
             console.log('Langue changée à:', lang);
         }
+
+        // Charger les photos VIP au démarrage
+        function loadVipPhotos() {
+            const gallery = document.getElementById('vip-gallery');
+            
+            // Lister les fichiers du dossier photos/vip/
+            const vipPhotos = [
+                'photos/vip/1.jpg',
+                'photos/vip/2.jpg',
+                'photos/vip/3.jpg',
+                'photos/vip/4.jpg',
+                'photos/vip/5.jpg',
+                'photos/vip/6.jpg'
+            ];
+            
+            let html = '';
+            let photoFound = false;
+            
+            vipPhotos.forEach((photo, index) => {
+                const img = new Image();
+                img.onload = function() {
+                    photoFound = true;
+                    const photoNum = index + 1;
+                    gallery.innerHTML += `
+                        <div class="bg-white p-2 rounded-sm shadow-sm overflow-hidden">
+                            <div class="aspect-[3/4] bg-charbon/20 rounded-sm overflow-hidden relative group">
+                                <img src="${photo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-charbon/80 to-transparent p-2">
+                                    <span class="text-white text-[10px] font-bold">Visiteur ${photoNum}</span>
+                                </div>
+                            </div>
+                        </div>`;
+                };
+                img.onerror = function() {
+                    // Ignorer les images qui n'existent pas
+                };
+                img.src = photo;
+            });
+            
+            // Afficher message si aucune photo trouvée
+            if (!photoFound) {
+                setTimeout(() => {
+                    if (gallery.innerHTML === '') {
+                        gallery.innerHTML = `
+                            <div class="col-span-2 text-center py-8">
+                                <div class="inline-block p-4 rounded-sm bg-creme text-charbon/30 mb-3">
+                                    <i class="fas fa-camera text-2xl"></i>
+                                </div>
+                                <p class="text-sm text-charbon/50">La galerie est vide pour l'instant.</p>
+                                <p class="text-xs text-charbon/30 mt-1">Ajoutez vos photos dans le dossier <code>photos/vip</code></p>
+                            </div>`;
+                    }
+                }, 1000);
+            }
+        }
+        
+        // Charger les photos au chargement de la page
+        window.addEventListener('load', loadVipPhotos);
     </script>
 </body>
 </html>
