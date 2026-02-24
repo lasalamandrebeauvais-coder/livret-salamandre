@@ -154,7 +154,7 @@ html_content = """<!DOCTYPE html>
                     <span class="font-bold text-anthracite text-sm font-playfair text-center leading-tight">Matin &<br>Départ</span>
                 </button>
 
-                <!-- 3. BAR (Gastronomie & Adresses) -->
+                <!-- 3. BAR (Bar & Dégustation & Adresses) -->
                 <button onclick="showSection('section-bar')" class="bg-white/80 backdrop-blur-sm p-6 rounded-[2rem] shadow-soft flex flex-col items-center justify-center aspect-square hover:scale-[1.02] hover:shadow-lg transition duration-300 group hover:bg-white">
                     <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-400 mb-3 group-hover:bg-purple-400 group-hover:text-white transition-colors duration-300">
                         <i class="fas fa-wine-glass-alt text-2xl"></i>

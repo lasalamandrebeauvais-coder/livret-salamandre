@@ -77,7 +77,7 @@ Héberger tous les fichiers sur un serveur web :
 ### Dashboard (8 tuiles)
 1. **Wifi & Info** - Code d'accès WiFi
 2. **Petit-Déj & Départ** - Horaires, services
-3. **Gastronomie** - Bar, carte, planches
+3. **Bar & Dégustation** - Bar, carte, planches
 4. **Transports** - Bus, taxi, train, aéroport
 5. **Visites** - Attractions Beauvais
 6. **Adresses** - Restaurants partenaires
