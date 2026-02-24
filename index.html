@@ -588,7 +588,7 @@
         </header>
 
         <!-- MESSAGES ZONE -->
-        <main class="flex-1 overflow-y-auto p-6 space-y-6">
+        <main id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-6">
             <div class="flex flex-col items-start max-w-[85%]">
                 <div class="bg-creme p-4 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl">
                     <p class="text-sm leading-relaxed text-charbon">
@@ -608,8 +608,11 @@
         <!-- INPUT ZONE -->
         <div class="p-6 bg-creme border-t border-charbon/10 flex-shrink-0">
             <div class="relative flex items-center">
-                <input type="text" placeholder="Écrivez..." class="w-full pl-4 pr-12 py-3 bg-white border border-charbon/10 rounded-sm text-sm focus:ring-1 focus:ring-or focus:border-or outline-none">
-                <button class="absolute right-3 text-or hover:text-charbon transition">
+                <button id="chat-mic" class="absolute left-3 text-charbon/40 hover:text-or transition">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <input id="chat-input" type="text" placeholder="Écrivez..." class="w-full pl-12 pr-12 py-3 bg-white border border-charbon/10 rounded-sm text-sm focus:ring-1 focus:ring-or focus:border-or outline-none">
+                <button id="chat-send" class="absolute right-3 text-or hover:text-charbon transition">
                     <i class="fas fa-paper-plane text-sm"></i>
                 </button>
             </div>
@@ -678,6 +681,102 @@
         }
 
         // Charger les photos VIP au démarrage
+        function sendChatMessage(text) {
+            if (!text || text.trim() === '') return;
+            addMessageToChat(text, 'user');
+            // réponse locale basique
+            setTimeout(() => {
+                const reply = simpleReply(text);
+                addMessageToChat(reply, 'bot');
+            }, 600);
+        }
+
+        function addMessageToChat(text, who) {
+            const container = document.getElementById('chat-messages');
+            const wrapper = document.createElement('div');
+            if (who === 'user') {
+                wrapper.className = 'flex flex-col items-end max-w-[85%] ml-auto';
+                wrapper.innerHTML = `<div class="bg-white p-3 rounded-tl-2xl rounded-bl-2xl rounded-br-2xl text-sm text-charbon">${text}</div>`;
+            } else {
+                wrapper.className = 'flex flex-col items-start max-w-[85%]';
+                wrapper.innerHTML = `<div class="bg-creme p-4 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl text-sm text-charbon">${text}</div>`;
+            }
+            container.appendChild(wrapper);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function simpleReply(message) {
+            const m = message.toLowerCase();
+            if (m.includes('wifi') || m.includes('mot de passe') || m.includes('réseau')) {
+                return 'Le Wi‑Fi s\'appelle "La Salamandre" et le mot de passe est affiché dans la fiche d\'accueil.';
+            }
+            if (m.includes('petit') || m.includes('déj') || m.includes('déjeuner')) {
+                return 'Le petit‑déjeuner est servi en semaine 07:15‑09:00, week‑end 08:30‑10:00.';
+            }
+            if (m.includes('horaire') || m.includes('ouvert') || m.includes('ouverture')) {
+                return 'Le bar est ouvert d\'avril à octobre. Pour d\'autres horaires, demandez précisement.';
+            }
+            if (m.includes('contact') || m.includes('téléphone') || m.includes('whatsapp')) {
+                return 'Contactez Stéphane au +33 6 14 87 59 53 (WhatsApp disponible).';
+            }
+            if (m.includes('secours') || m.includes('urgence')) {
+                return 'En cas d\'urgence composez le 15 (SAMU) ou le 112. Le numéro local : +33 6 14 87 59 53.';
+            }
+            return 'Désolé, je n\'ai pas l\'information exacte. Essayez : "WiFi", "Petit‑déj", "Horaires" ou "Contact".';
+        }
+
+        // initialisation des événements du chatbot (bouton envoyer, touche Enter, micro)
+        (function initChatbot() {
+            const input = document.getElementById('chat-input');
+            const send = document.getElementById('chat-send');
+            const mic = document.getElementById('chat-mic');
+            if (input) {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        sendChatMessage(input.value);
+                        input.value = '';
+                    }
+                });
+            }
+            if (send) {
+                send.addEventListener('click', () => {
+                    sendChatMessage(input.value);
+                    input.value = '';
+                });
+            }
+
+            // Reconnaissance vocale (Web Speech API) — basique
+            if (mic && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recog = new SpeechRecognition();
+                recog.lang = 'fr-FR';
+                recog.interimResults = false;
+                let listening = false;
+                mic.addEventListener('click', () => {
+                    if (!listening) {
+                        recog.start();
+                        mic.classList.add('text-or');
+                        listening = true;
+                    } else {
+                        recog.stop();
+                    }
+                });
+                recog.onresult = (ev) => {
+                    const text = ev.results[0][0].transcript;
+                    const inputEl = document.getElementById('chat-input');
+                    if (inputEl) inputEl.value = text;
+                    sendChatMessage(text);
+                };
+                recog.onend = () => {
+                    mic.classList.remove('text-or');
+                    listening = false;
+                };
+            } else if (mic) {
+                // masquer le micro si non supporté
+                mic.style.display = 'none';
+            }
+        })();
+
         function loadVipPhotos() {
             const gallery = document.getElementById('vip-gallery');
             
