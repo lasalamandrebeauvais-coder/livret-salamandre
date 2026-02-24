@@ -110,25 +110,27 @@
                 </button>
 
                 <!-- 7. JEUX -->
-                <button onclick="showSection('section-jeux')" class="col-span-2 bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex items-center justify-center group">
-                    <div class="text-or mb-0 mr-4 group-hover:scale-110 transition-transform text-2xl">
-                        <i class="fas fa-chess-knight"></i>
+                <button onclick="showSection('section-jeux')" class="bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-or mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-chess-knight text-2xl"></i>
                     </div>
-                    <div class="text-left">
-                        <span class="text-xs uppercase tracking-widest font-semibold block">Jeux de Société</span>
-                        <span class="text-[10px] text-charbon/50 uppercase tracking-wide">Détente & Partage</span>
-                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold">Jeux</span>
                 </button>
 
                 <!-- 8. LIVRE D'OR -->
-                <button onclick="showSection('section-livre-or')" class="col-span-2 bg-white border border-or/30 p-6 rounded-sm shadow-sm hover:border-or transition flex items-center justify-center group">
-                    <div class="text-or mb-0 mr-4 group-hover:scale-110 transition-transform text-2xl">
-                        <i class="fas fa-star"></i>
+                <button onclick="showSection('section-livre-or')" class="bg-white border border-or/30 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-or mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-star text-2xl"></i>
                     </div>
-                    <div class="text-left">
-                        <span class="text-xs uppercase tracking-widest font-semibold block">Livre d'Or & VIP</span>
-                        <span class="text-[10px] text-charbon/50 uppercase tracking-wide">Vos mots & Nos stars</span>
+                    <span class="text-xs uppercase tracking-widest font-semibold">Livre d'Or</span>
+                </button>
+
+                <!-- 9. SECOURS -->
+                <button onclick="showSection('section-secours')" class="bg-white border border-red-200 p-6 rounded-sm shadow-sm hover:border-red-400 transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-red-500 mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-triangle-exclamation text-2xl"></i>
                     </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold">Secours</span>
                 </button>
 
             </div>
@@ -530,6 +532,63 @@
             <div class="text-center mt-12 mb-8">
                 <p class="font-bold text-charbon/60 text-sm tracking-wider">La Salamandre</p>
                 <a href="https://www.google.com/maps/search/?api=1&query=10+rue+Marcelle+Geudelin+Beauvais" target="_blank" class="text-or font-bold text-[10px] mt-2 inline-block border-b border-or pb-0.5 uppercase tracking-widest hover:opacity-70 transition">Ouvrir le plan</a>
+            </div>
+
+            <!-- SECTION SECOURS -->
+            <div id="section-secours" class="hidden space-y-6 animate-fade-in relative pt-4">
+                <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
+                
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-red-50 to-creme">
+                    <i class="fas fa-triangle-exclamation text-6xl text-red-300 opacity-30"></i>
+                </div>
+                
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-red-100">
+                    <h3 class="font-bold text-2xl mb-6 flex items-center text-red-600">
+                        <i class="fas fa-triangle-exclamation text-red-500 mr-3"></i> Urgences & Secours
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <!-- SAMU -->
+                        <div class="bg-red-50 p-6 rounded-sm border border-red-200">
+                            <h4 class="font-bold text-red-600 mb-2 uppercase tracking-wider text-sm">SAMU</h4>
+                            <a href="tel:15" class="text-3xl font-bold text-red-600 block mb-2">15</a>
+                            <p class="text-sm text-charbon/60">Ambulance & Secours Médicaux</p>
+                        </div>
+                        
+                        <!-- POMPIERS -->
+                        <div class="bg-orange-50 p-6 rounded-sm border border-orange-200">
+                            <h4 class="font-bold text-orange-600 mb-2 uppercase tracking-wider text-sm">Pompiers</h4>
+                            <a href="tel:18" class="text-3xl font-bold text-orange-600 block mb-2">18</a>
+                            <p class="text-sm text-charbon/60">Incendie & Secours d'urgence</p>
+                        </div>
+                        
+                        <!-- POLICE -->
+                        <div class="bg-blue-50 p-6 rounded-sm border border-blue-200">
+                            <h4 class="font-bold text-blue-600 mb-2 uppercase tracking-wider text-sm">Police</h4>
+                            <a href="tel:17" class="text-3xl font-bold text-blue-600 block mb-2">17</a>
+                            <p class="text-sm text-charbon/60">Forces de l'ordre & Sécurité</p>
+                        </div>
+                        
+                        <!-- EUROPE WARNING -->
+                        <div class="bg-purple-50 p-6 rounded-sm border border-purple-200">
+                            <h4 class="font-bold text-purple-600 mb-2 uppercase tracking-wider text-sm">Numéro Européen</h4>
+                            <a href="tel:112" class="text-3xl font-bold text-purple-600 block mb-2">112</a>
+                            <p class="text-sm text-charbon/60">Urgence multilingue (24h/24)</p>
+                        </div>
+                    </div>
+                    
+                    <!-- URGENCE MAISON -->
+                    <div class="mt-8 bg-charbon text-white p-6 rounded-sm">
+                        <h4 class="font-bold mb-4 uppercase tracking-wider">En Cas d'Urgence à La Salamandre</h4>
+                        <p class="text-white/80 text-sm mb-4">Contactez immédiatement Stéphane :</p>
+                        <a href="tel:+33614875953" class="block bg-white text-charbon font-bold py-3 rounded-sm text-center mb-2 hover:bg-or transition">
+                            <i class="fas fa-phone mr-2"></i> +33 6 14 87 59 53
+                        </a>
+                        <a href="https://wa.me/33614875953?text=URGENCE%20À%20LA%20SALAMANDRE" class="block bg-green-500 text-white font-bold py-3 rounded-sm text-center hover:bg-green-600 transition">
+                            <i class="fab fa-whatsapp mr-2"></i> WhatsApp Secours
+                        </a>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
