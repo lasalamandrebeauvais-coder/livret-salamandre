@@ -343,7 +343,7 @@ html_content = """<!DOCTYPE html>
                             <h3 class="font-bold text-3xl font-playfair mb-1">Bar & Terrasse</h3>
                             <p class="text-white/80 text-sm font-light">Détente & Gourmandise</p>
                         </div>
-                        <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md border border-white/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide text-white">Avril - Octobre</div>
+                        <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md border border-white/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide text-white">Ouvert du 15 avril au 15 octobre</div>
                     </div>
                     
                     <div class="p-8">
