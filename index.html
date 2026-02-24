@@ -77,12 +77,12 @@
                     <span class="text-xs uppercase tracking-widest font-semibold">Petit-Déj & Départ</span>
                 </button>
 
-                <!-- 3. BAR -->
+                <!-- 3. BAR (Gastronomie + Adresses) -->
                 <button onclick="showSection('section-bar')" class="bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
                     <div class="text-or mb-3 group-hover:scale-110 transition-transform">
                         <i class="fas fa-wine-glass-alt text-2xl"></i>
                     </div>
-                    <span class="text-xs uppercase tracking-widest font-semibold">Gastronomie</span>
+                    <span class="text-xs uppercase tracking-widest font-semibold">Gastronomie & Adresses</span>
                 </button>
 
                 <!-- 4. TRANSPORTS -->
@@ -101,13 +101,7 @@
                     <span class="text-xs uppercase tracking-widest font-semibold">Visites</span>
                 </button>
 
-                <!-- 6. ADRESSES -->
-                <button onclick="showSection('section-adresses')" class="bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
-                    <div class="text-or mb-3 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-map-marker-alt text-2xl"></i>
-                    </div>
-                    <span class="text-xs uppercase tracking-widest font-semibold">Adresses</span>
-                </button>
+                <!-- 6. (Adresses merged into Gastronomie) -->
 
                 <!-- 7. JEUX -->
                 <button onclick="showSection('section-jeux')" class="bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
@@ -268,65 +262,7 @@
                 </div>
             </div>
 
-            <!-- SECTION ADRESSES -->
-            <div id="section-adresses" class="hidden space-y-6 animate-fade-in relative pt-4">
-                <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
-                
-                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-orange-50 to-creme">
-                    <img src="art.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover opacity-30">
-                    <i class="fas fa-utensils absolute text-6xl text-charbon/20"></i>
-                </div>
-                
-                <h2 class="text-3xl font-bold text-charbon mb-6 text-center">Mes coups de ❤️</h2>
-
-                <div class="bg-white p-8 rounded-sm shadow-sm hover:shadow-md transition border border-charbon/10">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="font-bold text-xl text-charbon">La Bohemia</h3>
-                            <div class="flex text-or text-xs mt-2 space-x-0.5">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-charbon/60 italic text-sm leading-relaxed mb-6">"Je vous le recommande pour sa belle ambiance sympathique et ses plats généreux."</p>
-                    <div class="flex gap-4">
-                        <a href="tel:+33344450000" class="flex-1 py-3 text-center text-xs font-bold border border-charbon/20 rounded-sm hover:bg-creme transition text-charbon uppercase tracking-wider">Appeler</a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=La+Bohemia+Beauvais" target="_blank" class="flex-1 py-3 text-center text-xs font-bold bg-charbon text-white rounded-sm hover:bg-charbon/80 transition uppercase tracking-wider shadow">Itinéraire</a>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-sm shadow-sm hover:shadow-md transition border border-charbon/10">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="font-bold text-xl text-charbon">La Place</h3>
-                            <div class="flex text-or text-xs mt-2 space-x-0.5">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-charbon/60 italic text-sm leading-relaxed mb-6">"Mon conseil : allez-y pour découvrir leur menu qui change toutes les semaines."</p>
-                    <div class="flex gap-4">
-                        <a href="tel:+33344450000" class="flex-1 py-3 text-center text-xs font-bold border border-charbon/20 rounded-sm hover:bg-creme transition text-charbon uppercase tracking-wider">Appeler</a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=La+Place+Beauvais" target="_blank" class="flex-1 py-3 text-center text-xs font-bold bg-charbon text-white rounded-sm hover:bg-charbon/80 transition uppercase tracking-wider shadow">Itinéraire</a>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-sm shadow-sm hover:shadow-md transition border border-charbon/10">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="font-bold text-xl text-charbon">L'Autrement</h3>
-                            <div class="flex text-or text-xs mt-2 space-x-0.5">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-charbon/60 italic text-sm leading-relaxed mb-6">"Pour une soirée d'exception, le gastronome vous attend."</p>
-                    <div class="flex gap-4">
-                        <a href="tel:+33344450000" class="flex-1 py-3 text-center text-xs font-bold border border-charbon/20 rounded-sm hover:bg-creme transition text-charbon uppercase tracking-wider">Appeler</a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Restaurant+L'Autrement+Beauvais" target="_blank" class="flex-1 py-3 text-center text-xs font-bold bg-charbon text-white rounded-sm hover:bg-charbon/80 transition uppercase tracking-wider shadow">Itinéraire</a>
-                    </div>
-                </div>
-            </div>
+            <!-- SECTION ADRESSES merged into SECTION BAR (Gastronomie) -->
 
             <!-- SECTION VISITES -->
             <div id="section-visites" class="hidden space-y-6 animate-fade-in relative pt-4">
@@ -675,14 +611,14 @@
 
         function showSection(sectionId) {
             document.getElementById('dashboard').classList.add('hidden');
-            const sections = ['section-wifi', 'section-infos', 'section-bar', 'section-adresses', 'section-visites', 'section-transports', 'section-jeux', 'section-livre-or'];
+            const sections = ['section-wifi', 'section-infos', 'section-bar', 'section-visites', 'section-transports', 'section-jeux', 'section-livre-or', 'section-secours'];
             sections.forEach(id => document.getElementById(id).classList.add('hidden'));
             document.getElementById(sectionId).classList.remove('hidden');
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function showDashboard() {
-            const sections = ['section-wifi', 'section-infos', 'section-bar', 'section-adresses', 'section-visites', 'section-transports', 'section-jeux', 'section-livre-or'];
+            const sections = ['section-wifi', 'section-infos', 'section-bar', 'section-visites', 'section-transports', 'section-jeux', 'section-livre-or', 'section-secours'];
             sections.forEach(id => document.getElementById(id).classList.add('hidden'));
             const dashboard = document.getElementById('dashboard');
             dashboard.classList.remove('hidden');
