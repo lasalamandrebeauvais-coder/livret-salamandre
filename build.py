@@ -159,7 +159,7 @@ html_content = """<!DOCTYPE html>
                     <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-400 mb-3 group-hover:bg-purple-400 group-hover:text-white transition-colors duration-300">
                         <i class="fas fa-wine-glass-alt text-2xl"></i>
                     </div>
-                    <span class="font-bold text-anthracite text-sm font-playfair">Gastronomie & Adresses</span>
+                    <span class="font-bold text-anthracite text-sm font-playfair">Bar & Dégustation</span>
                 </button>
 
                 <!-- 4. (Adresses merged into Bar) -->
