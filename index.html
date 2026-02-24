@@ -200,70 +200,69 @@
             <div id="section-bar" class="hidden space-y-6 animate-fade-in relative pt-4">
                 <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
                 
-                <div class="bg-white p-0 rounded-sm shadow-sm overflow-hidden mt-8 border border-charbon/10">
-                    <div class="h-64 bg-charbon/20 relative">
-                        <img src="terrasse1.jpg" alt="Terrasse" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-charbon/80 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 text-white">
-                            <h3 class="font-bold text-3xl mb-1">Bar & Terrasse</h3>
-                            <p class="text-white/80 text-sm font-light">Détente & Gourmandise</p>
-                        </div>
+                <!-- Hero Section with Unsplash Image -->
+                <div class="relative h-48 overflow-hidden rounded-sm shadow-sm mt-8">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800" class="w-full h-full object-cover" alt="Bar La Salamandre">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <h2 class="text-white text-3xl tracking-widest uppercase">Gastronomie</h2>
                     </div>
-                    
-                    <div class="p-8">
-                        <p class="text-charbon/60 text-sm leading-relaxed mb-8 text-center italic">"Un moment suspendu à savourer entre amis ou en famille."</p>
+                </div>
+                
+                <div class="space-y-8">
+                    <!-- Formules Bar de la Salamandre -->
+                    <section>
+                        <h3 class="text-or uppercase text-xs tracking-[0.2em] font-sans font-bold mb-4">Le Bar de la Salamandre</h3>
+                        <div class="bg-white border border-charbon/10 p-5 rounded-sm shadow-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-charbon">Planche Apéritive Royale</h4>
+                                <span class="text-or font-sans font-bold">25€</span>
+                            </div>
+                            <p class="text-sm text-charbon/60 italic mb-4">Sélection de produits locaux, fromages affinés et charcuterie fine.</p>
+                            <button onclick="window.open('https://wa.me/33614875953?text=Bonjour,%20je%20souhaite%20commander%20une%20planche%20apéritive%20royale', '_blank')" class="w-full py-3 bg-charbon text-white text-[10px] uppercase tracking-widest hover:bg-or hover:text-charbon transition-colors rounded-sm font-bold">Réserver via WhatsApp</button>
+                        </div>
+                    </section>
 
+                    <!-- Restaurants Préférés -->
+                    <section>
+                        <h3 class="text-or uppercase text-xs tracking-[0.2em] font-sans font-bold mb-4">Mes Adresses Préférées</h3>
                         <div class="space-y-4">
-                            <h4 class="font-bold text-charbon text-xl mb-4 text-center border-b border-charbon/10 pb-2">La Carte</h4>
+                            <!-- Resto 1 -->
+                            <a href="https://www.google.com/maps/search/L'Artisan+du+Goût+Beauvais" target="_blank" class="flex bg-white border border-charbon/10 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition">
+                                <img src="https://images.unsplash.com/photo-1550966842-28c2e27bde20?auto=format&fit=crop&w=300" class="w-24 h-24 object-cover" alt="Restaurant">
+                                <div class="p-4 flex-1">
+                                    <h4 class="font-bold text-sm text-charbon">L'Artisan du Goît</h4>
+                                    <p class="text-[10px] text-charbon/50 uppercase tracking-tighter mt-1">Cuisine Française • 5 min à pied</p>
+                                    <div class="flex text-or text-xs mt-2">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </a>
                             
-                            <div class="flex items-center justify-between p-4 rounded-sm bg-creme/50 hover:bg-creme transition border border-charbon/5">
-                                <div class="flex items-center">
-                                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-or shadow-sm mr-4">
-                                        <i class="fas fa-beer"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-charbon text-sm">Bières</p>
-                                        <p class="text-[10px] text-charbon/50 uppercase tracking-wide">Sélection variée</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center justify-between p-4 rounded-sm bg-creme/50 hover:bg-creme transition border border-charbon/5">
-                                <div class="flex items-center">
-                                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-or shadow-sm mr-4">
-                                        <i class="fas fa-wine-glass"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-charbon text-sm">Vins</p>
-                                        <p class="text-[10px] text-charbon/50 uppercase tracking-wide">Blanc, Rouge, Rosé</p>
+                            <!-- Resto 2 -->
+                            <a href="https://www.google.com/maps/search/La+Place+Beauvais" target="_blank" class="flex bg-white border border-charbon/10 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition">
+                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300" class="w-24 h-24 object-cover" alt="Restaurant">
+                                <div class="p-4 flex-1">
+                                    <h4 class="font-bold text-sm text-charbon">La Place</h4>
+                                    <p class="text-[10px] text-charbon/50 uppercase tracking-tighter mt-1">Bistrot Cosy • 2 min à pied</p>
+                                    <div class="flex text-or text-xs mt-2">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="flex items-center justify-between p-4 rounded-sm bg-creme/50 hover:bg-creme transition border border-charbon/5">
-                                <div class="flex items-center">
-                                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-or shadow-sm mr-4">
-                                        <i class="fas fa-glass-cheers"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-charbon text-sm">Champagne</p>
-                                        <p class="text-[10px] text-charbon/50 uppercase tracking-wide">Fines bulles</p>
+                            </a>
+                            
+                            <!-- Resto 3 -->
+                            <a href="https://www.google.com/maps/search/L'Autrement+Beauvais" target="_blank" class="flex bg-white border border-charbon/10 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition">
+                                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300" class="w-24 h-24 object-cover" alt="Restaurant">
+                                <div class="p-4 flex-1">
+                                    <h4 class="font-bold text-sm text-charbon">L'Autrement</h4>
+                                    <p class="text-[10px] text-charbon/50 uppercase tracking-tighter mt-1">Gastronomie • 8 min à pied</p>
+                                    <div class="flex text-or text-xs mt-2">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-
-                        <div class="mt-8 bg-charbon text-white p-6 rounded-sm relative overflow-hidden shadow-lg">
-                            <div class="relative z-10 flex items-start">
-                                <i class="fas fa-cheese text-2xl text-or mr-4 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-lg mb-1">L'Incontournable</h4>
-                                    <p class="text-white/80 text-xs uppercase tracking-widest mb-3">Planche Mixte</p>
-                                    <p class="text-white/70 text-sm leading-relaxed text-[11px]">Assortiment de charcuteries fines et fromages affinés. Idéal à partager.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </section>
                 </div>
             </div>
 
@@ -331,119 +330,107 @@
             <div id="section-visites" class="hidden space-y-6 animate-fade-in relative pt-4">
                 <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
                 
-                <div class="h-32 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-charbon/20">
-                    <img src="art.jpg" onerror="this.style.display='none'" class="absolute inset-0 w-full h-full object-cover" alt="Art">
-                    <div class="absolute inset-0 bg-charbon/40"></div>
-                    <h2 class="text-3xl font-bold text-white relative z-10 text-center">Découvrir Beauvais</h2>
+                <h2 class="text-3xl font-bold text-charbon mt-8 mb-6 text-center tracking-widest">Découvrir Beauvais</h2>
+                
+                <div class="space-y-10">
+                    <!-- Cathédrale Saint-Pierre -->
+                    <div class="group">
+                        <div class="overflow-hidden mb-4 rounded-sm shadow-sm h-48">
+                            <img src="https://images.unsplash.com/photo-1549410141-8631589336d3?auto=format&fit=crop&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Cathédrale de Beauvais">
+                        </div>
+                        <h3 class="text-xl italic text-charbon mb-2 font-playfair">Cathédrale Saint-Pierre</h3>
+                        <p class="text-sm text-charbon/60 leading-relaxed mb-4">Découvrez le chœur gothique le plus haut du monde. Un chef-d'œuvre à seulement 10 minutes de marche de La Salamandre.</p>
+                        <a href="https://culture.beauvais.fr" target="_blank" class="text-or text-[10px] font-bold uppercase tracking-[0.3em] border-b border-or pb-1 inline-block hover:text-charbon transition">Voir sur la carte</a>
+                    </div>
+                    
+                    <!-- Le MUDO -->
+                    <div class="group">
+                        <div class="overflow-hidden mb-4 rounded-sm shadow-sm h-48">
+                            <img src="https://images.unsplash.com/photo-1578926078328-123d5d4f6f41?auto=format&fit=crop&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Musée MUDO">
+                        </div>
+                        <h3 class="text-xl italic text-charbon mb-2 font-playfair">Le MUDO - Musée de l'Oise</h3>
+                        <p class="text-sm text-charbon/60 leading-relaxed mb-4">Collections d'art et d'archéologie. Entrée gratuite. Un incontournable pour découvrir le patrimoine régional.</p>
+                        <a href="https://mudo.oise.fr" target="_blank" class="text-or text-[10px] font-bold uppercase tracking-[0.3em] border-b border-or pb-1 inline-block hover:text-charbon transition">Découvrir</a>
+                    </div>
+                    
+                    <!-- Le Quadrilatère -->
+                    <div class="group">
+                        <div class="overflow-hidden mb-4 rounded-sm shadow-sm h-48">
+                            <img src="https://images.unsplash.com/photo-1578926078328-123d5d4f6f41?auto=format&fit=crop&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Le Quadrilatère">
+                        </div>
+                        <h3 class="text-xl italic text-charbon mb-2 font-playfair">Le Quadrilatère</h3>
+                        <p class="text-sm text-charbon/60 leading-relaxed mb-4">Parcours d'art contemporain et architecture moderne. Un espace unique dédié à la création et l'innovation.</p>
+                        <a href="https://culture.beauvais.fr/le-quadrilatere" target="_blank" class="text-or text-[10px] font-bold uppercase tracking-[0.3em] border-b border-or pb-1 inline-block hover:text-charbon transition">Explorer</a>
+                    </div>
                 </div>
-
-                <a href="https://www.visitbeauvais.fr" target="_blank" class="block bg-charbon text-white p-8 rounded-sm shadow-lg text-center hover:bg-charbon/80 transition group">
+                
+                <a href="https://www.visitbeauvais.fr" target="_blank" class="block bg-charbon text-white p-8 rounded-sm shadow-lg text-center hover:bg-charbon/80 transition mt-8">
                     <i class="fas fa-info-circle text-4xl mb-4"></i>
                     <h3 class="font-bold text-xl">Office de Tourisme</h3>
                     <p class="text-xs mt-2 opacity-80 font-light uppercase tracking-widest">Toutes les activités</p>
                 </a>
-
-                <div class="space-y-4">
-                    <a href="https://culture.beauvais.fr" target="_blank" class="block bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition group border border-charbon/10">
-                        <div class="flex items-center">
-                            <div class="w-16 h-16 bg-creme rounded-sm flex items-center justify-center text-or mr-5 flex-shrink-0">
-                                <i class="fas fa-church text-2xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="font-bold text-lg text-charbon">Cathédrale St-Pierre</h3>
-                                <div class="mt-2 flex items-center text-[10px] text-charbon/50 font-bold uppercase tracking-wider">
-                                    <i class="fas fa-clock text-or mr-1"></i>
-                                    <span>10h-17h15 (Hiver)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="https://mudo.oise.fr" target="_blank" class="block bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition group border border-charbon/10">
-                        <div class="flex items-center">
-                            <div class="w-16 h-16 bg-creme rounded-sm flex items-center justify-center text-or mr-5 flex-shrink-0">
-                                <i class="fas fa-paint-brush text-2xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="font-bold text-lg text-charbon flex items-center">
-                                    Le MUDO
-                                    <span class="ml-2 text-[8px] bg-or/20 text-charbon px-2 py-1 rounded-sm font-bold uppercase tracking-wide">Gratuit</span>
-                                </h3>
-                                <p class="text-charbon/50 text-xs mt-1">Musée de l'Oise</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="https://culture.beauvais.fr/le-quadrilatere" target="_blank" class="block bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition group border border-charbon/10">
-                        <div class="flex items-center">
-                            <div class="w-16 h-16 bg-creme rounded-sm flex items-center justify-center text-or mr-5 flex-shrink-0">
-                                <i class="fas fa-shapes text-2xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="font-bold text-lg text-charbon">Le Quadrilatère</h3>
-                                <p class="text-charbon/50 text-xs mt-1">Art & Architecture</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
             </div>
 
             <!-- SECTION TRANSPORTS -->
             <div id="section-transports" class="hidden space-y-6 animate-fade-in relative pt-4">
                 <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i>Retour</button>
                 
-                <h2 class="text-3xl font-bold text-charbon mt-10 mb-6 text-center">Se Déplacer</h2>
-
-                <a href="https://www.corolis.fr/wp-content/uploads/2024/03/Fiche-Horaire-Web_6_valable-a-partir-du-5-janvier-2026.pdf" target="_blank" class="flex justify-between items-center bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition group border border-charbon/10">
-                    <div class="flex items-center">
-                        <span class="bg-or text-white font-bold text-xl w-14 h-14 rounded-sm flex items-center justify-center mr-5 shadow">6</span>
-                        <div>
-                            <div class="text-lg font-bold text-charbon">Bus Ligne 6</div>
-                            <span class="block text-xs text-charbon/50 font-normal uppercase tracking-wider mt-1">Arrêt : <strong>MAILLART</strong></span>
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-blue-50 to-creme">
+                    <i class="fas fa-map text-6xl text-charbon/20"></i>
+                </div>
+                
+                <h2 class="text-3xl font-bold text-charbon mb-6 text-center tracking-widest">Se Déplacer</h2>
+                
+                <!-- Aéroport Beauvais-Tillé -->
+                <div class="bg-white p-6 border border-charbon/10 rounded-sm shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-or rounded-full flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-plane text-xs"></i>
                         </div>
+                        <h3 class="font-bold uppercase tracking-wider text-charbon">Aéroport de Beauvais</h3>
                     </div>
-                </a>
-
-                <div class="bg-white p-8 rounded-sm shadow-sm border border-charbon/10">
-                    <div class="flex items-center mb-6">
-                        <div class="w-10 h-10 bg-creme rounded-sm flex items-center justify-center mr-4">
-                            <i class="fas fa-taxi text-or text-sm"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-charbon">Taxis Partenaires</h3>
-                    </div>
-                    <div class="space-y-3">
-                        <a href="tel:+33624491048" class="flex justify-between items-center p-4 rounded-sm bg-creme hover:bg-creme/70 transition group cursor-pointer border border-charbon/5">
-                            <span class="font-bold text-sm text-charbon">Jean Pierre</span>
-                            <div class="flex items-center text-charbon/50 text-sm group-hover:text-or transition">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                        </a>
-                        <a href="tel:+33785979968" class="flex justify-between items-center p-4 rounded-sm bg-creme hover:bg-creme/70 transition group cursor-pointer border border-charbon/5">
-                            <span class="font-bold text-sm text-charbon">Taxi Mounir</span>
-                            <div class="flex items-center text-charbon/50 text-sm group-hover:text-or transition">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                        </a>
-                        <a href="tel:+33767356468" class="flex justify-between items-center p-4 rounded-sm bg-creme hover:bg-creme/70 transition group cursor-pointer border border-charbon/5">
-                            <span class="font-bold text-sm text-charbon">Taxi Asin</span>
-                            <div class="flex items-center text-charbon/50 text-sm group-hover:text-or transition">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                        </a>
+                    <p class="text-sm text-charbon/60 mb-4">Navette toutes les 15 mins. Temps de trajet : 10 mins.</p>
+                    <div class="flex gap-2">
+                        <button onclick="window.open('https://www.google.com/maps/search/Taxi+Beauvais', '_blank')" class="flex-1 py-2 border border-charbon text-charbon text-[10px] uppercase tracking-widest font-bold rounded-sm hover:bg-creme transition">Réserver Taxi</button>
+                        <a href="https://www.aeroportparisbeauvais.com" target="_blank" class="flex-1 py-2 bg-charbon text-white text-[10px] uppercase tracking-widest font-bold rounded-sm hover:bg-or hover:text-charbon transition text-center">Horaires Live</a>
                     </div>
                 </div>
-
-                <div class="grid grid-cols-2 gap-4">
-                    <a href="https://www.sncf-connect.com/train/trajet/beauvais/paris" target="_blank" class="flex flex-col items-center justify-center bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition group text-center border border-charbon/10">
-                        <i class="fas fa-train text-or mb-3 text-2xl"></i>
-                        <span class="text-sm font-bold text-charbon">Train Paris</span>
-                        <span class="text-[10px] text-charbon/50 mt-1 uppercase tracking-wide">Gare du Nord</span>
-                    </a>
-                    <a href="https://www.aeroportparisbeauvais.com/acces-et-parking" target="_blank" class="flex flex-col items-center justify-center bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition group text-center border border-charbon/10">
-                        <i class="fas fa-bus text-or mb-3 text-2xl"></i>
-                        <span class="text-sm font-bold text-charbon">Navette Aéro</span>
-                        <span class="text-[10px] text-charbon/50 mt-1 uppercase tracking-wide">Porte Maillot</span>
-                    </a>
+                
+                <!-- Gare SNCF -->
+                <div class="bg-white p-6 border border-charbon/10 rounded-sm shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-charbon rounded-full flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-train text-xs"></i>
+                        </div>
+                        <h3 class="font-bold uppercase tracking-wider text-charbon">Direction Paris</h3>
+                    </div>
+                    <p class="text-sm text-charbon/60 mb-2">Train direct (TER) vers Paris Gare du Nord.</p>
+                    <p class="text-xs text-or font-bold uppercase tracking-wide">Durée : 1h15</p>
+                    <a href="https://www.sncf-connect.com" target="_blank" class="block mt-4 py-2 text-center bg-or text-white text-[10px] uppercase tracking-widest font-bold rounded-sm hover:bg-charbon transition">Consulter les horaires</a>
+                </div>
+                
+                <!-- Taxis Partenaires -->
+                <div class="bg-white p-6 border border-charbon/10 rounded-sm shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-or rounded-full flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-taxi text-xs"></i>
+                        </div>
+                        <h3 class="font-bold uppercase tracking-wider text-charbon">Taxis Recommendés</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="tel:+33624491048" class="flex justify-between items-center p-3 rounded-sm bg-creme hover:bg-or/20 transition border border-charbon/5">
+                            <span class="font-bold text-sm text-charbon">Jean Pierre</span>
+                            <i class="fas fa-phone text-or"></i>
+                        </a>
+                        <a href="tel:+33785979968" class="flex justify-between items-center p-3 rounded-sm bg-creme hover:bg-or/20 transition border border-charbon/5">
+                            <span class="font-bold text-sm text-charbon">Taxi Mounir</span>
+                            <i class="fas fa-phone text-or"></i>
+                        </a>
+                        <a href="tel:+33767356468" class="flex justify-between items-center p-3 rounded-sm bg-creme hover:bg-or/20 transition border border-charbon/5">
+                            <span class="font-bold text-sm text-charbon">Taxi Asin</span>
+                            <i class="fas fa-phone text-or"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
