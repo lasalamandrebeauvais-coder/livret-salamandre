@@ -1,0 +1,21 @@
+# OneDrive temp files
+.tmp.driveupload/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+node_modules/
+dist/
+build/
+
+# Environment
+.env
+.env.local
