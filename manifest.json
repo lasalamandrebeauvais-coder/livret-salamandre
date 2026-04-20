@@ -1,0 +1,111 @@
+{
+  "name": "Livret d'Accueil La Salamandre",
+  "short_name": "La Salamandre",
+  "description": "Livret d'accueil numérique et guide complet pour votre séjour à la maison d'hôtes La Salamandre à Beauvais",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#D4AF37",
+  "categories": ["travel", "hospitality"],
+  "screenshots": [
+    {
+      "src": "stephane.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "stephane.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "icons": [
+    {
+      "src": "stephane.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "stephane.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "stephane.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Wi-Fi & Infos",
+      "short_name": "Wi-Fi",
+      "description": "Accédez rapidement à vos codes Wi-Fi et informations",
+      "url": "/?section=wifi",
+      "icons": [
+        {
+          "src": "stephane.jpg",
+          "sizes": "192x192",
+          "type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "name": "Bar & Dégustation",
+      "short_name": "Bar",
+      "description": "Découvrez notre bar et les restaurants partenaires",
+      "url": "/?section=bar",
+      "icons": [
+        {
+          "src": "stephane.jpg",
+          "sizes": "192x192",
+          "type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "name": "Transports",
+      "short_name": "Taxis",
+      "description": "Infos transports et taxi recommandés",
+      "url": "/?section=transports",
+      "icons": [
+        {
+          "src": "stephane.jpg",
+          "sizes": "192x192",
+          "type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "name": "Secours",
+      "short_name": "SOS",
+      "description": "Numéros d'urgence et premiers secours",
+      "url": "/?section=secours",
+      "icons": [
+        {
+          "src": "stephane.jpg",
+          "sizes": "192x192",
+          "type": "image/jpeg"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "prefer_related_applications": false
+}

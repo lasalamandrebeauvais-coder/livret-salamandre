@@ -1,0 +1,751 @@
+<!-- Version 2.1 - Design crème/or/charbon + Chatbot + Multilingue + Secours + Unsplash [2026-02-26] -->
+<!-- TEMPLATE VERSION - HTML injecté par build.py -->
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livret d'Accueil - La Salamandre</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1A1A1A">
+    <meta name="description" content="Livret d'accueil numérique La Salamandre - Beauvais">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { creme: '#F9F7F2', or: '#D4AF37', charbon: '#1A1A1A' }, fontFamily: { 'playfair': ['"Playfair Display"', 'serif'] } } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        body { background-color: #F9F7F2; color: #1A1A1A; }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out; }
+        .animate-slide-up { animation: slideUp 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+
+<body class="bg-creme text-charbon min-h-screen relative">
+
+    <!-- WELCOME SCREEN -->
+    <div id="welcome-screen" class="fixed inset-0 z-[100] bg-charbon flex flex-col items-center justify-center text-white" style="background-image: url('telephone_rouge.jpg'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-charbon/60 backdrop-blur-[2px]"></div>
+        
+        <div class="relative z-10 text-center px-6 animate-slide-up">
+            <div class="w-24 h-24 border-4 border-white/30 rounded-full mx-auto mb-6 p-1">
+                <img src="stephane.jpg" alt="Stéphane" class="w-full h-full rounded-full object-cover">
+            </div>
+            <h1 class="text-5xl font-bold mb-2 tracking-widest" data-i18n="welcome_title">La Salamandre</h1>
+            <p class="text-sm uppercase tracking-[0.3em] font-light mb-8 opacity-90" data-i18n="location">Beauvais</p>
+            
+            <p class="text-lg italic mb-10 text-white/90" data-i18n="welcome_subtitle">"Soyez les bienvenus chez vous."</p>
+            
+            <button onclick="enterSite()" class="bg-white text-charbon px-10 py-4 rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-or hover:text-white transition duration-500 shadow-2xl" data-i18n="enter_btn">Entrer</button>
+        </div>
+        
+        <div class="absolute bottom-8 text-[10px] uppercase tracking-widest opacity-60">Livret d'Accueil Digital</div>
+    </div>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="relative min-h-screen pb-32 transition-opacity duration-1000 opacity-0" id="main-content">
+        
+        <!-- HEADER -->
+        <header class="pt-12 pb-12 px-6 text-center border-b border-charbon/10">
+            <h1 class="text-4xl font-bold mb-1 tracking-widest uppercase">La Salamandre</h1>
+            <p class="text-xs italic tracking-wider text-charbon/60" data-i18n="header_subtitle">Maison d'Hôtes • Beauvais</p>
+            <div class="w-16 h-px bg-or mx-auto mt-6"></div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="px-6 py-12 max-w-md mx-auto space-y-8">
+            
+            <!-- DASHBOARD GRID (2 colonnes) -->
+            <div id="dashboard" class="grid grid-cols-2 gap-4 animate-fade-in">
+                
+                <!-- 1. WIFI -->
+                <button onclick="showSection('section-wifi')" class="bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-or mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-wifi text-2xl"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold" data-i18n="dash_wifi">Wifi & Info</span>
+                </button>
+
+                <!-- 2. PETIT DEJ -->
+                <button onclick="showSection('section-infos')" class="bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-or mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-coffee text-2xl"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold" data-i18n="dash_breakfast">Petit-Déj & Départ</span>
+                </button>
+
+                <!-- 3. BAR -->
+                <button onclick="showSection('section-bar')" class="bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-or mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-wine-glass-alt text-2xl"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold" data-i18n="dash_bar">Bar & Dégustation</span>
+                </button>
+
+                <!-- 4. TRANSPORTS -->
+                <button onclick="showSection('section-transports')" class="bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-or mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-bus text-2xl"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold" data-i18n="dash_transport">Transports</span>
+                </button>
+
+                <!-- 5. VISITES -->
+                <button onclick="showSection('section-visites')" class="bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-or mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-camera text-2xl"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold" data-i18n="dash_visits">Visites</span>
+                </button>
+
+                <!-- 6. JEUX -->
+                <button onclick="showSection('section-jeux')" class="bg-white border border-charbon/10 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-or mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-chess-knight text-2xl"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold" data-i18n="dash_games">Jeux</span>
+                </button>
+
+                <!-- 7. LIVRE D'OR -->
+                <button onclick="showSection('section-livre-or')" class="bg-white border border-or/30 p-6 rounded-sm shadow-sm hover:border-or transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-or mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-star text-2xl"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold" data-i18n="dash_guestbook">Livre d'Or</span>
+                </button>
+
+                <!-- 8. SECOURS -->
+                <button onclick="showSection('section-secours')" class="bg-white border border-red-200 p-6 rounded-sm shadow-sm hover:border-red-400 transition flex flex-col items-center justify-center aspect-square group">
+                    <div class="text-red-500 mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-triangle-exclamation text-2xl"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold" data-i18n="dash_emergency">Secours</span>
+                </button>
+
+            </div>
+
+            <!-- ==================== SECTIONS CONTENU ==================== -->
+
+            <!-- SECTION WIFI -->
+            <div id="section-wifi" class="hidden space-y-6 animate-fade-in relative pt-4">
+                <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i><span data-i18n="btn_back">Retour</span></button>
+                
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-or/20 to-creme">
+                    <i class="fas fa-wifi text-6xl text-or opacity-20"></i>
+                </div>
+                
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-charbon/10">
+                    <h3 class="font-bold text-2xl mb-6 flex items-center">
+                        <i class="fas fa-wifi text-or mr-3"></i> Wi-Fi
+                    </h3>
+                    
+                    <div class="flex flex-col gap-4 bg-creme p-6 rounded-sm border border-charbon/10">
+                        <div>
+                            <p class="text-xs text-charbon/50 uppercase tracking-widest mb-1" data-i18n="wifi_network_label">Nom du réseau</p>
+                            <p class="font-bold text-charbon">La Salamandre</p>
+                            
+                            <p class="text-xs text-charbon/50 uppercase tracking-widest mb-1 mt-4" data-i18n="wifi_password_label">Mot de passe</p>
+                            <p class="font-mono text-or font-bold text-lg tracking-wide select-all" id="wifi-code">lasalamandre15052015</p>
+                        </div>
+                        <button onclick="copyWifi()" class="w-full text-xs font-bold bg-charbon text-white px-6 py-4 rounded-sm shadow-lg hover:bg-charbon/80 transition uppercase tracking-wider mt-2" data-i18n="btn_copy">Copier le code</button>
+                    </div>
+                    <p id="copy-msg" class="text-center text-green-600 text-xs mt-3 hidden font-bold animate-pulse"><i class="fas fa-check mr-1"></i> <span data-i18n="msg_copied">Copié !</span></p>
+                </div>
+            </div>
+
+            <!-- SECTION INFOS (Petit-déjeuner & Départ) -->
+            <div id="section-infos" class="hidden space-y-6 animate-fade-in relative pt-4">
+                <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i><span data-i18n="btn_back">Retour</span></button>
+                
+                <div class="h-48 rounded-sm shadow-sm overflow-hidden relative mt-8">
+                    <img src="senteur.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover" alt="Bien-être">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charbon/80 to-transparent flex items-end">
+                        <h3 class="font-bold text-2xl text-white p-6" data-i18n="section_wellbeing">Bien-être & Senteurs</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="bg-white p-8 rounded-sm shadow-sm text-center border border-charbon/10">
+                        <h3 class="font-bold text-2xl text-charbon mb-6" data-i18n="breakfast_title">Petit-Déjeuner</h3>
+                        <div class="w-full space-y-3">
+                            <div class="flex justify-between items-center bg-creme rounded-sm p-4">
+                                <span class="text-sm font-bold text-charbon" data-i18n="weekday">Semaine</span>
+                                <span class="text-sm text-charbon/60 font-mono">07h15 - 09h00</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-creme rounded-sm p-4">
+                                <span class="text-sm font-bold text-charbon" data-i18n="weekend">Week-end</span>
+                                <span class="text-sm text-charbon/60 font-mono">08h30 - 10h00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-sm shadow-sm text-center border border-charbon/10">
+                        <h3 class="font-bold text-2xl text-charbon mb-2" data-i18n="departure_title">Départ</h3>
+                        <p class="text-lg text-charbon font-bold mb-1" data-i18n="departure_time">Avant 11h00</p>
+                        <p class="text-xs text-charbon/50 uppercase tracking-widest" data-i18n="safe_travels">Bon voyage !</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION BAR -->
+            <div id="section-bar" class="hidden space-y-6 animate-fade-in relative pt-4">
+                <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i><span data-i18n="btn_back">Retour</span></button>
+                
+                <div class="relative h-48 overflow-hidden rounded-sm shadow-sm mt-8">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800" class="w-full h-full object-cover" alt="Bar La Salamandre">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <h2 class="text-white text-3xl tracking-widest uppercase" data-i18n="dash_bar">Bar & Dégustation</h2>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-white/20 text-white px-3 py-1 rounded-full text-[12px] font-bold" data-i18n="bar_season">Ouvert du 15 avril au 15 octobre</div>
+                </div>
+                
+                <div class="space-y-8">
+                    <section>
+                        <h3 class="text-or uppercase text-xs tracking-[0.2em] font-sans font-bold mb-4">Le Bar de la Salamandre</h3>
+                        <div class="bg-white border border-charbon/10 p-5 rounded-sm shadow-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-charbon">Planche Apéritive Royale</h4>
+                                <span class="text-or font-sans font-bold">25€</span>
+                            </div>
+                            <p class="text-sm text-charbon/60 italic mb-4" data-i18n="bar_platter_desc">Sélection de produits locaux, fromages affinés et charcuterie fine.</p>
+                            <button onclick="window.open('https://wa.me/33614875953?text=Bonjour,%20je%20souhaite%20réserver%20au%20Bar%20de%20La%20Salamandre', '_blank')" class="w-full py-3 bg-charbon text-white text-[10px] uppercase tracking-widest hover:bg-or hover:text-charbon transition-colors rounded-sm font-bold" data-i18n="btn_reserve">Réserver à La Salamandre</button>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3 class="text-or uppercase text-xs tracking-[0.2em] font-sans font-bold mb-4" data-i18n="section_favs">Mes Adresses Préférées</h3>
+                        <div class="space-y-4">
+                            <a href="https://www.google.com/maps/search/La+Bohemia+Beauvais" target="_blank" class="flex bg-white border border-charbon/10 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition">
+                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400" class="w-28 h-28 object-cover" alt="La Bohemia">
+                                <div class="p-4 flex-1">
+                                    <h4 class="font-bold text-sm text-charbon">La Bohemia</h4>
+                                    <p class="text-[10px] text-charbon/50 uppercase tracking-tighter mt-1">Cuisine Française • 5 min à pied</p>
+                                    <div class="flex text-or text-xs mt-2">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a href="https://www.google.com/maps/search/La+Place+Beauvais" target="_blank" class="flex bg-white border border-charbon/10 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition">
+                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400" class="w-28 h-28 object-cover" alt="La Place">
+                                <div class="p-4 flex-1">
+                                    <h4 class="font-bold text-sm text-charbon">La Place</h4>
+                                    <p class="text-[10px] text-charbon/50 uppercase tracking-tighter mt-1">Bistrot Cosy • 2 min à pied</p>
+                                    <div class="flex text-or text-xs mt-2">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a href="https://www.google.com/maps/search/L'Autrement+Beauvais" target="_blank" class="flex bg-white border border-charbon/10 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition">
+                                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400" class="w-28 h-28 object-cover" alt="L'Autrement">
+                                <div class="p-4 flex-1">
+                                    <h4 class="font-bold text-sm text-charbon">L'Autrement</h4>
+                                    <p class="text-[10px] text-charbon/50 uppercase tracking-tighter mt-1">Gastronomie • 8 min à pied</p>
+                                    <div class="flex text-or text-xs mt-2">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- SECTION VISITES -->
+            <div id="section-visites" class="hidden space-y-6 animate-fade-in relative pt-4">
+                <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i><span data-i18n="btn_back">Retour</span></button>
+                
+                <h2 class="text-3xl font-bold text-charbon mt-8 mb-6 text-center tracking-widest" data-i18n="section_visits">Découvrir Beauvais</h2>
+                
+                <div class="space-y-10">
+                    <div class="group">
+                        <div class="overflow-hidden mb-4 rounded-sm shadow-sm h-48">
+                            <img src="https://www.oisetourisme.com/assets/uploads/2022/08/sans-titre-5-recupere-1536x752.png" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Cathédrale de Beauvais">
+                        </div>
+                        <h3 class="text-xl italic text-charbon mb-2 font-playfair">Cathédrale Saint-Pierre</h3>
+                        <p class="text-sm text-charbon/60 leading-relaxed mb-4">Découvrez le chœur gothique le plus haut du monde. À seulement 10 minutes à pied de La Salamandre.</p>
+                        <a href="https://culture.beauvais.fr" target="_blank" class="text-or text-[10px] font-bold uppercase tracking-[0.3em] border-b border-or pb-1 inline-block hover:text-charbon transition">Voir sur la carte</a>
+                    </div>
+
+                    <div class="group">
+                        <div class="overflow-hidden mb-4 rounded-sm shadow-sm h-48">
+                            <img src="https://mudo.oise.fr/fileadmin/_processed_/csm_MUDO-Musee_de_l_Oise_palais_Renaissance__credit_Alain_Ruin_1_a613f06010.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Musée MUDO">
+                        </div>
+                        <h3 class="text-xl italic text-charbon mb-2 font-playfair">Le MUDO - Musée de l'Oise</h3>
+                        <p class="text-sm text-charbon/60 leading-relaxed mb-4">Collections d'art et d'archéologie. Entrée gratuite. Un incontournable régional.</p>
+                        <a href="https://mudo.oise.fr" target="_blank" class="text-or text-[10px] font-bold uppercase tracking-[0.3em] border-b border-or pb-1 inline-block hover:text-charbon transition">Découvrir</a>
+                    </div>
+
+                    <div class="group">
+                        <div class="overflow-hidden mb-4 rounded-sm shadow-sm h-48">
+                            <img src="https://aisne.media.tourinsoft.eu/upload/Quadrilatere-VisitBeauvais-2025--10-.JPG" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Le Quadrilatère">
+                        </div>
+                        <h3 class="text-xl italic text-charbon mb-2 font-playfair">Le Quadrilatère</h3>
+                        <p class="text-sm text-charbon/60 leading-relaxed mb-4">Parcours d'art contemporain et architecture moderne.</p>
+                        <a href="https://culture.beauvais.fr/le-quadrilatere" target="_blank" class="text-or text-[10px] font-bold uppercase tracking-[0.3em] border-b border-or pb-1 inline-block hover:text-charbon transition">Explorer</a>
+                    </div>
+
+                    <div class="group">
+                        <div class="overflow-hidden mb-4 rounded-sm shadow-sm h-48">
+                            <img src="https://www.visitbeauvais.fr/content/uploads/2024/11/theatre-beauvais.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Théâtre">
+                        </div>
+                        <h3 class="text-xl italic text-charbon mb-2 font-playfair">Théâtre</h3>
+                        <p class="text-sm text-charbon/60 leading-relaxed mb-4">Programmation culturelle locale et spectacles tout au long de l'année.</p>
+                        <a href="https://www.theatre-beauvais.fr" target="_blank" class="text-or text-[10px] font-bold uppercase tracking-[0.3em] border-b border-or pb-1 inline-block hover:text-charbon transition">Voir la programmation</a>
+                    </div>
+
+                    <div class="group">
+                        <div class="overflow-hidden mb-4 rounded-sm shadow-sm h-48">
+                            <img src="https://www.visitbeauvais.fr/content/uploads/2024/11/Beauvais_Plan-deau-du-Canada_2015%C2%A9Sonnet-Sylvain-Hemis-1-1200x800.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Plan d'eau du Canada">
+                        </div>
+                        <h3 class="text-xl italic text-charbon mb-2 font-playfair">Plan d'eau du Canada</h3>
+                        <p class="text-sm text-charbon/60 leading-relaxed mb-4">Espace naturel, idéal pour une promenade et l'observation des oiseaux.</p>
+                        <a href="https://www.visitbeauvais.fr/plan-eau" target="_blank" class="text-or text-[10px] font-bold uppercase tracking-[0.3em] border-b border-or pb-1 inline-block hover:text-charbon transition">Voir sur la carte</a>
+                    </div>
+                </div>
+                
+                <a href="https://www.visitbeauvais.fr" target="_blank" class="block bg-charbon text-white p-8 rounded-sm shadow-lg text-center hover:bg-charbon/80 transition mt-8">
+                    <i class="fas fa-info-circle text-4xl mb-4"></i>
+                    <h3 class="font-bold text-xl">Office de Tourisme</h3>
+                    <p class="text-xs mt-2 opacity-80 font-light uppercase tracking-widest" data-i18n="tourism_office_desc">Toutes les activités</p>
+                </a>
+            </div>
+
+            <!-- SECTION TRANSPORTS -->
+            <div id="section-transports" class="hidden space-y-6 animate-fade-in relative pt-4">
+                <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i><span data-i18n="btn_back">Retour</span></button>
+                
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-blue-50 to-creme">
+                    <i class="fas fa-map text-6xl text-charbon/20"></i>
+                </div>
+                
+                <h2 class="text-3xl font-bold text-charbon mb-6 text-center tracking-widest" data-i18n="section_transport">Se Déplacer</h2>
+                
+                <div class="bg-white p-6 border border-charbon/10 rounded-sm shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-or rounded-full flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-plane text-xs"></i>
+                        </div>
+                        <h3 class="font-bold uppercase tracking-wider text-charbon" data-i18n="airport">Aéroport de Beauvais</h3>
+                    </div>
+                    <p class="text-sm text-charbon/60 mb-4">Navette toutes les 15 mins. Temps de trajet : 10 mins.</p>
+                    <div class="flex gap-2">
+                        <button onclick="window.open('https://www.google.com/maps/search/Taxi+Beauvais', '_blank')" class="flex-1 py-2 border border-charbon text-charbon text-[10px] uppercase tracking-widest font-bold rounded-sm hover:bg-creme transition" data-i18n="btn_taxi">Réserver Taxi</button>
+                        <a href="https://www.aeroportparisbeauvais.com" target="_blank" class="flex-1 py-2 bg-charbon text-white text-[10px] uppercase tracking-widest font-bold rounded-sm hover:bg-or hover:text-charbon transition text-center" data-i18n="btn_live">Horaires Live</a>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 border border-charbon/10 rounded-sm shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-charbon rounded-full flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-train text-xs"></i>
+                        </div>
+                        <h3 class="font-bold uppercase tracking-wider text-charbon" data-i18n="train_paris">Direction Paris</h3>
+                    </div>
+                    <p class="text-sm text-charbon/60 mb-2">Train direct (TER) vers Paris Gare du Nord.</p>
+                    <p class="text-xs text-or font-bold uppercase tracking-wide">Durée : 1h15</p>
+                    <a href="https://www.sncf-connect.com" target="_blank" class="block mt-4 py-2 text-center bg-or text-white text-[10px] uppercase tracking-widest font-bold rounded-sm hover:bg-charbon transition" data-i18n="btn_schedule">Consulter les horaires</a>
+                </div>
+                
+                <div class="bg-white p-6 border border-charbon/10 rounded-sm shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-or rounded-full flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-taxi text-xs"></i>
+                        </div>
+                        <h3 class="font-bold uppercase tracking-wider text-charbon" data-i18n="taxi_recommend">Taxis Recommendés</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="tel:+33624491048" class="flex justify-between items-center p-3 rounded-sm bg-creme hover:bg-or/20 transition border border-charbon/5">
+                            <span class="font-bold text-sm text-charbon">Jean Pierre</span>
+                            <i class="fas fa-phone text-or"></i>
+                        </a>
+                        <a href="tel:+33785979968" class="flex justify-between items-center p-3 rounded-sm bg-creme hover:bg-or/20 transition border border-charbon/5">
+                            <span class="font-bold text-sm text-charbon">Taxi Mounir</span>
+                            <i class="fas fa-phone text-or"></i>
+                        </a>
+                        <a href="tel:+33767356468" class="flex justify-between items-center p-3 rounded-sm bg-creme hover:bg-or/20 transition border border-charbon/5">
+                            <span class="font-bold text-sm text-charbon">Taxi Asin</span>
+                            <i class="fas fa-phone text-or"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION JEUX -->
+            <div id="section-jeux" class="hidden space-y-6 animate-fade-in relative pt-4">
+                <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i><span data-i18n="btn_back">Retour</span></button>
+                
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-indigo-50 to-creme">
+                    <i class="fas fa-dice text-6xl text-charbon/20"></i>
+                </div>
+                
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-charbon/10">
+                    <h2 class="text-2xl font-bold text-charbon mb-8 text-center" data-i18n="section_games">Jeux & Détente</h2>
+
+                    <div class="space-y-6">
+                        <div class="bg-creme p-6 rounded-sm border border-charbon/10">
+                            <h3 class="font-bold text-charbon text-lg mb-3 flex items-center">
+                                <i class="fas fa-shapes text-or mr-2"></i> <span data-i18n="games_available">À votre disposition</span>
+                            </h3>
+                            <p class="text-charbon/60 text-sm leading-relaxed mb-4" data-i18n="games_desc">Profitez de notre collection de jeux pour agrémenter votre séjour. N'hésitez pas à les emprunter pour jouer en chambre ou sur la terrasse.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-white px-3 py-1 rounded-sm text-xs text-charbon/60 border border-charbon/10">Scrabble</span>
+                                <span class="bg-white px-3 py-1 rounded-sm text-xs text-charbon/60 border border-charbon/10">Monopoly</span>
+                                <span class="bg-white px-3 py-1 rounded-sm text-xs text-charbon/60 border border-charbon/10">Échecs</span>
+                                <span class="bg-white px-3 py-1 rounded-sm text-xs text-charbon/60 border border-charbon/10">Cartes</span>
+                                <span class="bg-white px-3 py-1 rounded-sm text-xs text-charbon/60 border border-charbon/10">Uno</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-charbon text-white p-6 rounded-sm shadow">
+                            <div class="flex items-start mb-4">
+                                <i class="fas fa-users text-2xl text-or mr-3"></i>
+                                <h3 class="font-bold text-lg" data-i18n="join_us">Rejoignez-nous !</h3>
+                            </div>
+                            <p class="text-white/70 text-sm leading-relaxed mb-4" data-i18n="games_party">Si une partie s'organise au salon ou en terrasse, vous êtes les bienvenus. C'est l'esprit de la maison : partage et bonne humeur.</p>
+                            <button onclick="window.open('https://wa.me/33614875953?text=Bonjour%20Ste%CC%81phane,%20une%20partie%20de%20jeux%20est%20pre%CC%81vue%20ce%20soir%20?', '_blank')" class="w-full bg-or text-charbon py-3 rounded-sm font-bold text-xs uppercase tracking-wider hover:bg-white transition" data-i18n="btn_program">Demander le programme</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION LIVRE D'OR -->
+            <div id="section-livre-or" class="hidden space-y-6 animate-fade-in relative pt-4">
+                <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i><span data-i18n="btn_back">Retour</span></button>
+                
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-charbon to-charbon/80">
+                    <i class="fas fa-star text-6xl text-or opacity-40"></i>
+                </div>
+                
+                <div class="bg-charbon text-white p-8 rounded-sm shadow text-center">
+                    <i class="fas fa-quote-right text-4xl text-or mb-4"></i>
+                    <h2 class="text-2xl font-bold" data-i18n="section_guestbook">Ils parlent de nous</h2>
+                    <p class="text-xs text-white/60 uppercase tracking-widest mt-2" data-i18n="guestbook_subtitle">Souvenirs & Célébrités</p>
+                </div>
+
+                <div class="flex p-1 bg-creme rounded-sm">
+                    <button onclick="switchTab('tab-clients')" id="btn-tab-clients" class="flex-1 py-3 rounded-sm text-xs font-bold uppercase tracking-wider transition bg-white shadow text-charbon" data-i18n="tab_reviews">Vos avis</button>
+                    <button onclick="switchTab('tab-vip')" id="btn-tab-vip" class="flex-1 py-3 rounded-sm text-xs font-bold uppercase tracking-wider transition text-charbon/50" data-i18n="tab_celebrities">Célébrités</button>
+                </div>
+
+                <div id="tab-clients" class="space-y-4 animate-fade-in">
+                    <div class="bg-white p-6 rounded-sm shadow border border-charbon/10">
+                        <div class="flex text-or mb-2 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="italic text-charbon/60 text-sm leading-relaxed mb-4">"Un grand merci à Stéphane pour son accueil chaleureux. La maison est magnifique et on s'y sent tout de suite comme chez soi."</p>
+                        <p class="text-xs font-bold text-charbon text-right">- Marie & Pierre, Juillet 2025</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-sm shadow border border-charbon/10">
+                        <div class="flex text-or mb-2 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="italic text-charbon/60 text-sm leading-relaxed mb-4">"Le bar en terrasse est une pépite. Calme, bon vin, et bonne compagnie. Nous reviendrons !"</p>
+                        <p class="text-xs font-bold text-charbon text-right">- Thomas, Septembre 2025</p>
+                    </div>
+
+                    <button onclick="window.open('https://wa.me/33614875953?text=Bonjour%20Ste%CC%81phane,%20voici%20un%20petit%20mot%20pour%20ton%20livre%20d%27or%20:%20', '_blank')" class="w-full bg-charbon text-white py-4 rounded-sm font-bold text-xs uppercase tracking-widest hover:bg-charbon/80 transition shadow flex items-center justify-center">
+                        <i class="fas fa-pen-nib mr-2"></i> <span data-i18n="btn_write">Écrire un mot</span>
+                    </button>
+                </div>
+
+                <div id="tab-vip" class="hidden space-y-4 animate-fade-in">
+                    <p class="text-center text-xs text-charbon/50 italic mb-4" data-i18n="vip_intro">Quelques visages familiers croisés à la Salamandre...</p>
+                    <div id="vip-gallery" class="grid grid-cols-2 gap-4">
+                        {vip_gallery_html}
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 mb-8">
+                <p class="font-bold text-charbon/60 text-sm tracking-wider">La Salamandre</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=10+rue+Marcelle+Geudelin+Beauvais" target="_blank" class="text-or font-bold text-[10px] mt-2 inline-block border-b border-or pb-0.5 uppercase tracking-widest hover:opacity-70 transition">Ouvrir le plan</a>
+            </div>
+
+            <!-- SECTION SECOURS -->
+            <div id="section-secours" class="hidden space-y-6 animate-fade-in relative pt-4">
+                <button onclick="showDashboard()" class="text-or font-bold text-xs bg-white px-4 py-2 rounded-sm shadow-sm hover:shadow-md transition uppercase tracking-wider flex items-center border border-charbon/10"><i class="fas fa-arrow-left mr-2"></i><span data-i18n="btn_back">Retour</span></button>
+                
+                <div class="h-40 rounded-sm shadow-sm overflow-hidden relative mt-8 flex items-center justify-center bg-gradient-to-br from-red-50 to-creme">
+                    <i class="fas fa-triangle-exclamation text-6xl text-red-300 opacity-30"></i>
+                </div>
+                
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-red-100">
+                    <h3 class="font-bold text-2xl mb-6 flex items-center text-red-600">
+                        <i class="fas fa-triangle-exclamation text-red-500 mr-3"></i> <span data-i18n="section_emergency">Urgences & Secours</span>
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-red-50 p-6 rounded-sm border border-red-200">
+                            <h4 class="font-bold text-red-600 mb-2 uppercase tracking-wider text-sm" data-i18n="emer_ems">SAMU</h4>
+                            <a href="tel:15" class="text-3xl font-bold text-red-600 block mb-2">15</a>
+                            <p class="text-sm text-charbon/60" data-i18n="emer_ems_desc">Ambulance & Secours Médicaux</p>
+                        </div>
+                        
+                        <div class="bg-orange-50 p-6 rounded-sm border border-orange-200">
+                            <h4 class="font-bold text-orange-600 mb-2 uppercase tracking-wider text-sm" data-i18n="emer_fire">Pompiers</h4>
+                            <a href="tel:18" class="text-3xl font-bold text-orange-600 block mb-2">18</a>
+                            <p class="text-sm text-charbon/60" data-i18n="emer_fire_desc">Incendie & Secours d'urgence</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-sm border border-blue-200">
+                            <h4 class="font-bold text-blue-600 mb-2 uppercase tracking-wider text-sm" data-i18n="emer_police">Police</h4>
+                            <a href="tel:17" class="text-3xl font-bold text-blue-600 block mb-2">17</a>
+                            <p class="text-sm text-charbon/60" data-i18n="emer_police_desc">Forces de l'ordre & Sécurité</p>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-6 rounded-sm border border-purple-200">
+                            <h4 class="font-bold text-purple-600 mb-2 uppercase tracking-wider text-sm" data-i18n="emer_eu">Numéro Européen</h4>
+                            <a href="tel:112" class="text-3xl font-bold text-purple-600 block mb-2">112</a>
+                            <p class="text-sm text-charbon/60" data-i18n="emer_eu_desc">Urgence multilingue (24h/24)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-charbon text-white p-6 rounded-sm">
+                        <h4 class="font-bold mb-4 uppercase tracking-wider" data-i18n="emer_house">En Cas d'Urgence à La Salamandre</h4>
+                        <p class="text-white/80 text-sm mb-4" data-i18n="emer_contact">Contactez immédiatement Stéphane :</p>
+                        <a href="tel:+33614875953" class="block bg-white text-charbon font-bold py-3 rounded-sm text-center mb-2 hover:bg-or transition">
+                            <i class="fas fa-phone mr-2"></i> +33 6 14 87 59 53
+                        </a>
+                        <a href="https://wa.me/33614875953?text=URGENCE%20À%20LA%20SALAMANDRE" class="block bg-green-500 text-white font-bold py-3 rounded-sm text-center hover:bg-green-600 transition">
+                            <i class="fab fa-whatsapp mr-2"></i> WhatsApp Secours
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- BOTTOM LANGUAGE BAR (Fixée en bas) -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-charbon/10 p-4 flex justify-around items-center shadow-lg z-40">
+        <button class="text-xs font-sans font-bold text-or border-b-2 border-or transition" onclick="setLanguage('fr')">FR</button>
+        <button class="text-xs font-sans text-charbon/30 transition hover:text-charbon" onclick="setLanguage('en')">EN</button>
+        <button class="text-xs font-sans text-charbon/30 transition hover:text-charbon" onclick="setLanguage('es')">ES</button>
+        <button class="text-xs font-sans text-charbon/30 transition hover:text-charbon" onclick="setLanguage('it')">IT</button>
+        <button class="text-xs font-sans text-charbon/30 transition hover:text-charbon" onclick="setLanguage('de')">DE</button>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script>
+        // Traductions (chargées depuis i18n.js)
+        let currentLanguage = 'fr';
+
+        function enterSite() {
+            const welcome = document.getElementById('welcome-screen');
+            const main = document.getElementById('main-content');
+            welcome.style.transition = 'opacity 0.6s ease-out';
+            welcome.style.opacity = '0';
+            main.style.opacity = '1';
+            setTimeout(() => { welcome.style.display = 'none'; }, 600);
+        }
+
+        function showSection(sectionId) {
+            document.getElementById('dashboard').classList.add('hidden');
+            const sections = ['section-wifi', 'section-infos', 'section-bar', 'section-visites', 'section-transports', 'section-jeux', 'section-livre-or', 'section-secours'];
+            sections.forEach(id => document.getElementById(id).classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function showDashboard() {
+            const sections = ['section-wifi', 'section-infos', 'section-bar', 'section-visites', 'section-transports', 'section-jeux', 'section-livre-or', 'section-secours'];
+            sections.forEach(id => document.getElementById(id).classList.add('hidden'));
+            const dashboard = document.getElementById('dashboard');
+            dashboard.classList.remove('hidden');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function copyWifi() {
+            navigator.clipboard.writeText(document.getElementById('wifi-code').innerText);
+            document.getElementById('copy-msg').classList.remove('hidden');
+            setTimeout(()=>document.getElementById('copy-msg').classList.add('hidden'), 3000);
+        }
+
+        function switchTab(tabId) {
+            document.getElementById('tab-clients').classList.add('hidden');
+            document.getElementById('tab-vip').classList.add('hidden');
+            const btnClients = document.getElementById('btn-tab-clients');
+            const btnVip = document.getElementById('btn-tab-vip');
+            btnClients.classList.remove('bg-white', 'shadow', 'text-charbon');
+            btnVip.classList.remove('bg-white', 'shadow', 'text-charbon');
+            document.getElementById(tabId).classList.remove('hidden');
+            if(tabId === 'tab-clients') {
+                btnClients.classList.add('bg-white', 'shadow', 'text-charbon');
+            } else {
+                btnVip.classList.add('bg-white', 'shadow', 'text-charbon');
+            }
+        }
+
+        function toggleChatbot() {
+            const modal = document.getElementById('chatbot-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            
+            // Mettre à jour la barre de langue
+            document.querySelectorAll('footer button').forEach((btn, idx) => {
+                btn.classList.remove('text-or', 'border-b-2', 'border-or', 'font-bold');
+                btn.classList.add('text-charbon/30');
+            });
+            document.querySelectorAll('footer button')[['fr', 'en', 'es', 'it', 'de'].indexOf(lang)].classList.remove('text-charbon/30');
+            document.querySelectorAll('footer button')[['fr', 'en', 'es', 'it', 'de'].indexOf(lang)].classList.add('text-or', 'border-b-2', 'border-or', 'font-bold');
+        }
+
+        function sendChatMessage(text) {
+            if (!text || text.trim() === '') return;
+            addMessageToChat(text, 'user');
+            setTimeout(() => {
+                const reply = simpleReply(text);
+                addMessageToChat(reply, 'bot');
+            }, 600);
+        }
+
+        function addMessageToChat(text, who) {
+            const container = document.getElementById('chat-messages');
+            const wrapper = document.createElement('div');
+            if (who === 'user') {
+                wrapper.className = 'flex flex-col items-end max-w-[85%] ml-auto';
+                wrapper.innerHTML = `<div class="bg-white p-3 rounded-tl-2xl rounded-bl-2xl rounded-br-2xl text-sm text-charbon">${text}</div>`;
+            } else {
+                wrapper.className = 'flex flex-col items-start max-w-[85%]';
+                wrapper.innerHTML = `<div class="bg-creme p-4 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl text-sm text-charbon">${text}</div>`;
+            }
+            container.appendChild(wrapper);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function simpleReply(message) {
+            const m = message.toLowerCase();
+            if (m.includes('wifi') || m.includes('mot de passe') || m.includes('réseau')) {
+                return 'Le Wi‑Fi s\'appelle "La Salamandre" et le mot de passe est affiché dans la fiche d\'accueil.';
+            }
+            if (m.includes('petit') || m.includes('déj') || m.includes('déjeuner')) {
+                return 'Le petit‑déjeuner est servi en semaine 07:15‑09:00, week‑end 08:30‑10:00.';
+            }
+            if (m.includes('horaire') || m.includes('ouvert') || m.includes('ouverture')) {
+                return 'Le bar est ouvert d\'avril à octobre. Pour d\'autres horaires, demandez précisement.';
+            }
+            if (m.includes('contact') || m.includes('téléphone') || m.includes('whatsapp')) {
+                return 'Contactez Stéphane au +33 6 14 87 59 53 (WhatsApp disponible).';
+            }
+            if (m.includes('secours') || m.includes('urgence')) {
+                return 'En cas d\'urgence composez le 15 (SAMU) ou le 112. Le numéro local : +33 6 14 87 59 53.';
+            }
+            return 'Désolé, je n\'ai pas l\'information exacte. Essayez : "WiFi", "Petit‑déj", "Horaires" ou "Contact".';
+        }
+
+        (function initChatbot() {
+            const input = document.getElementById('chat-input');
+            const send = document.getElementById('chat-send');
+            const mic = document.getElementById('chat-mic');
+            if (input) {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        sendChatMessage(input.value);
+                        input.value = '';
+                    }
+                });
+            }
+            if (send) {
+                send.addEventListener('click', () => {
+                    sendChatMessage(input.value);
+                    input.value = '';
+                });
+            }
+
+            if (mic && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recog = new SpeechRecognition();
+                recog.lang = 'fr-FR';
+                recog.interimResults = false;
+                let listening = false;
+                mic.addEventListener('click', () => {
+                    if (!listening) {
+                        recog.start();
+                        mic.classList.add('text-or');
+                        listening = true;
+                    } else {
+                        recog.stop();
+                    }
+                });
+                recog.onresult = (ev) => {
+                    const text = ev.results[0][0].transcript;
+                    const inputEl = document.getElementById('chat-input');
+                    if (inputEl) inputEl.value = text;
+                    sendChatMessage(text);
+                };
+                recog.onend = () => {
+                    mic.classList.remove('text-or');
+                    listening = false;
+                };
+            } else if (mic) {
+                mic.style.display = 'none';
+            }
+        })();
+
+        // Initialiser la langue au chargement
+        window.addEventListener('load', () => {
+            setLanguage('fr');
+            
+            // Enregistrer le Service Worker pour le mode hors-ligne
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker enregistré:', registration);
+                        
+                        // Vérifier les mises à jour toutes les heures
+                        setInterval(() => {
+                            registration.update();
+                        }, 60 * 60 * 1000);
+                        
+                        // Lorsqu'une mise à jour est trouvée
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('✨ Nouvelle version disponible');
+                                    // Afficher une notification à l'utilisateur
+                                    showUpdateNotification();
+                                }
+                            });
+                        });
+                    })
+                    .catch((error) => {
+                        console.warn('⚠️ Service Worker non enregistré:', error);
+                    });
+            }
+        });
+        
+        // Notification pour mise à jour disponible
+        function showUpdateNotification() {
+            const banner = document.createElement('div');
+            banner.className = 'fixed bottom-20 left-4 right-4 bg-or text-charbon p-4 rounded-lg shadow-2xl z-50 animate-slide-up';
+            banner.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-semibold">✨ Une nouvelle version est disponible</span>
+                    <button onclick="this.parentElement.parentElement.remove(); location.reload();" class="ml-4 bg-charbon text-white px-3 py-1 rounded text-xs font-bold hover:bg-charbon/80 transition">
+                        Recharger
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(banner);
+        }
+    </script>
+</body>
+</html>
